@@ -1,0 +1,92 @@
+:root {
+	font-family: "Montserrat", system-ui, sans-serif !important;
+	line-height: 1.5;
+	font-weight: 400;
+	color: #1a1a1a;
+	background-color: #fff;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/* Палитра: чёрный + белый */
+	--color-bg: #fafafa;
+	--color-bg-soft: #f2f2f2;
+	--color-bg-card: #fff;
+	--color-accent: #1a1a1a;
+	--color-accent-light: #555;
+	--color-text: #1a1a1a;
+	--color-text-muted: #666;
+	--color-border: rgba(0, 0, 0, 0.12);
+	--color-shadow: rgba(0, 0, 0, 0.08);
+	--color-heart: rgba(0, 0, 0, 0.35);
+	--color-dark: #1a1a1a;
+	--color-dark-alt: #2a2a2a;
+}
+
+/* ── Розовая тема ── */
+[data-theme="rose"] {
+	color: #2e1e2e;
+	background-color: #faf5f7;
+	--color-bg: #faf5f7;
+	--color-bg-soft: #f3eaee;
+	--color-bg-card: #fffbfc;
+	--color-accent: #8b3a4a;
+	--color-accent-light: #c47a8a;
+	--color-text: #2e1e2e;
+	--color-text-muted: #5a3d4d;
+	--color-border: rgba(139, 58, 74, 0.25);
+	--color-shadow: rgba(139, 58, 74, 0.12);
+	--color-heart: rgba(139, 58, 74, 0.45);
+	--color-dark: #2d2230;
+	--color-dark-alt: #2d2230;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
+	font-family: "Montserrat", system-ui, sans-serif !important;
+}
+
+/* Тонкий тёмный скроллбар как на референсе */
+html {
+	scrollbar-width: thin;
+	scrollbar-color: #333 #fff;
+}
+
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #333;
+	border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #1a1a1a;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+button {
+	font-family: inherit;
+}

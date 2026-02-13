@@ -1,0 +1,82 @@
+.hero-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1.5rem;
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-bg-soft) 50%, var(--color-bg-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-label {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.hero-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero-name {
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero-name.groom {
+  color: var(--color-text-muted);
+}
+
+.hero-name.bride {
+  color: var(--color-text);
+}
+
+.hero-amp {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.hero-divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-light), transparent);
+  margin: 0 auto 1.5rem;
+  transform-origin: center;
+}
+
+.hero-date {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  font-size: 1.25rem;
+  color: var(--color-heart);
+}

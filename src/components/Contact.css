@@ -1,0 +1,72 @@
+.contact-block {
+	max-width: 720px;
+	margin: 3rem auto 3rem;
+	padding: 2.5rem 2rem 3rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.contact-logo {
+	display: block;
+	height: 100px;
+	width: auto;
+	max-width: 250px;
+	object-fit: contain;
+	margin-bottom: 1.5rem;
+}
+
+.contact-title {
+	margin: 0 0 2rem;
+	font-size: clamp(1.75rem, 4vw, 2.25rem);
+	font-weight: 600;
+	color: var(--color-text);
+	text-align: center;
+	letter-spacing: 0.15em;
+	width: fit-content;
+	margin: 0 auto 2rem;
+}
+
+.contact-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	align-items: center;
+	text-align: center;
+}
+
+.contact-item {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.contact-label {
+	font-size: clamp(0.85rem, 2vw, 0.95rem);
+	color: var(--color-text);
+	font-weight: 500;
+}
+
+.contact-phone {
+	font-size: clamp(1rem, 2.5vw, 1.15rem);
+	font-weight: 600;
+	color: var(--color-text);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.contact-phone:hover {
+	color: var(--color-accent-light);
+}
+
+.contact-link {
+	font-size: clamp(1rem, 2.5vw, 1.15rem);
+	font-weight: 600;
+	color: var(--color-text);
+	text-decoration: none;
+	transition: color 0.2s;
+}
+
+.contact-link:hover {
+	color: var(--color-accent-light);
+}

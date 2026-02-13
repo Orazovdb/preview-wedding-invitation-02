@@ -1,0 +1,154 @@
+.envelope-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, var(--color-bg) 0%, var(--color-bg-soft) 30%, var(--color-bg-soft) 60%, var(--color-bg-soft) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.envelope-container {
+  position: relative;
+  z-index: 1;
+}
+
+.envelope {
+  position: relative;
+  width: min(340px, 90vw);
+  padding: 3rem 2rem;
+  background: linear-gradient(145deg, #fff 0%, var(--color-bg) 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 25px 50px -12px var(--color-shadow),
+    0 0 0 1px var(--color-border),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(180deg, #ddd 0%, #999 100%);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 4px 12px var(--color-shadow);
+}
+
+.envelope-body {
+  position: relative;
+  padding-top: 2rem;
+  text-align: center;
+}
+
+.envelope-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.envelope-names .name {
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.envelope-names .name.groom {
+  color: var(--color-text-muted);
+}
+
+.envelope-names .name.bride {
+  color: var(--color-text);
+}
+
+.names-separator {
+  font-size: 1.25rem;
+  color: var(--color-accent);
+  font-weight: 500;
+}
+
+.envelope-subtitle {
+  margin: 0 0 1.75rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.envelope-btn {
+  padding: 0.85rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-accent-light) 100%);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--color-shadow);
+  letter-spacing: 0.03em;
+}
+
+.envelope-btn:hover {
+  box-shadow: 0 6px 20px var(--color-shadow);
+}
+
+.envelope-decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-heart {
+  position: absolute;
+  font-size: 1.5rem;
+  color: var(--color-heart);
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-heart:nth-child(1) {
+  top: 15%;
+  left: 10%;
+}
+
+.floating-heart:nth-child(2) {
+  top: 70%;
+  right: 15%;
+  animation-delay: -2s;
+}
+
+.floating-heart:nth-child(3) {
+  bottom: 20%;
+  left: 20%;
+  animation-delay: -4s;
+}
+
+.floating-heart.delay-1 {
+  animation-delay: -1s;
+}
+
+.floating-heart.delay-2 {
+  animation-delay: -3s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+/* ── Rose theme ── */
+[data-theme="rose"] .envelope-flap {
+  background: linear-gradient(180deg, #e5d8df 0%, #c47a8a 100%);
+}

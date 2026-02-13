@@ -1,0 +1,288 @@
+.date-location-section {
+	padding: 3.5rem 1.5rem 0;
+	background: #fff;
+	color: var(--color-text);
+}
+
+/* ── Intro block ── */
+
+.date-intro-block {
+	margin-bottom: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.date-ornament {
+	color: var(--color-accent-light);
+	opacity: 0.6;
+	margin-bottom: 1.25rem;
+}
+
+.date-intro-text {
+	margin: 0 0 1.5rem;
+	font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+	color: var(--color-text);
+	font-weight: 400;
+	line-height: 1.6;
+	text-align: center;
+	max-width: 320px;
+	font-style: italic;
+}
+
+/* ── Calendar card ── */
+
+.date-calendar-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: min(340px, 88vw);
+	margin: 0 auto 1.5rem;
+	padding: 1.75rem 1.5rem;
+	background: var(--color-bg);
+	border: 1px solid var(--color-border);
+	border-radius: 12px;
+	box-shadow: 0 4px 24px var(--color-shadow);
+}
+
+.date-calendar-title {
+	margin: 0 0 1rem;
+	font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	color: var(--color-accent);
+	text-transform: uppercase;
+}
+
+.date-calendar-weekdays {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 2px 6px;
+	margin-bottom: 0.4rem;
+	font-size: clamp(0.65rem, 1.6vw, 0.7rem);
+	letter-spacing: 0.04em;
+	color: var(--color-text-muted);
+	opacity: 0.8;
+	width: 100%;
+}
+
+.date-calendar-weekday {
+	text-align: center;
+	min-width: 1.8em;
+	font-weight: 500;
+}
+
+.date-calendar-grid {
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	gap: 2px 6px;
+	font-size: clamp(0.85rem, 2vw, 0.9rem);
+	width: 100%;
+}
+
+.date-calendar-cell {
+	aspect-ratio: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 1.8em;
+	position: relative;
+	color: var(--color-text);
+	border-radius: 50%;
+	transition: background 0.2s;
+}
+
+.date-calendar-cell-wedding {
+	position: relative;
+}
+
+.date-calendar-day {
+	z-index: 1;
+}
+
+.date-calendar-heart {
+	position: absolute;
+	top: 60%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: var(--color-accent);
+	z-index: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.date-calendar-heart-icon {
+	animation: date-heart-pulse 1.4s ease-in-out infinite;
+	transform-origin: center;
+}
+
+.date-calendar-cell-wedding .date-calendar-day {
+	position: relative;
+	z-index: 2;
+	font-weight: 700;
+	color: var(--color-accent);
+}
+
+@keyframes date-heart-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.94;
+		transform: scale(1.1);
+	}
+}
+
+/* ── Time badge ── */
+
+.date-calendar-time {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 1.25rem;
+	padding-top: 1rem;
+	border-top: 1px solid var(--color-border);
+	width: 100%;
+	justify-content: center;
+}
+
+.date-calendar-time-label {
+	font-size: 0.8rem;
+	color: var(--color-text-muted);
+	font-weight: 400;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+}
+
+.date-calendar-time-value {
+	font-size: 1.15rem;
+	font-weight: 700;
+	color: var(--color-accent);
+	letter-spacing: 0.08em;
+	font-variant-numeric: tabular-nums;
+}
+
+/* ── Occasion text ── */
+
+.date-occasion {
+	margin: 0 0 1.25rem;
+	font-size: clamp(0.9rem, 2.5vw, 1rem);
+	color: var(--color-text);
+	font-weight: 500;
+	letter-spacing: 0.03em;
+}
+
+/* ── Location block ── */
+
+.location-block {
+	position: relative;
+	max-width: 720px;
+	margin: 0 auto;
+	min-height: 280px;
+	border-radius: 16px;
+	overflow: hidden;
+	background: var(--color-dark);
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+	background-image: url("/location-bg-image.png");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.location-overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		180deg,
+		rgba(0, 0, 0, 0.5) 0%,
+		rgba(0, 0, 0, 0.75) 100%
+	);
+	z-index: 1;
+}
+
+.location-content {
+	position: relative;
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	padding: 3rem 2rem 3.5rem;
+	color: #fff;
+}
+
+.location-label {
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.5);
+	margin-bottom: 0.75rem;
+}
+
+.location-title {
+	margin: 0 0 0.5rem;
+	font-size: clamp(1.5rem, 4vw, 2rem);
+	font-weight: 600;
+	color: #fff;
+	text-align: center;
+	letter-spacing: 0.05em;
+}
+
+.location-address {
+	margin: 0 0 1.5rem;
+	font-size: clamp(0.85rem, 2vw, 0.95rem);
+	color: rgba(255, 255, 255, 0.65);
+	line-height: 1.5;
+}
+
+.location-route-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.7rem 1.75rem;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--color-dark);
+	background: #fff;
+	border: none;
+	border-radius: 30px;
+	text-decoration: none;
+	transition: background 0.3s, transform 0.2s;
+}
+
+.location-route-btn:hover {
+	background: #f0f0f0;
+	transform: translateY(-1px);
+}
+
+.location-route-btn-icon {
+	font-size: 1rem;
+	line-height: 1;
+}
+
+/* ── Rose theme ── */
+[data-theme="rose"] .location-overlay {
+	background: linear-gradient(
+		180deg,
+		rgba(45, 34, 48, 0.55) 0%,
+		rgba(45, 34, 48, 0.8) 100%
+	);
+}
+
+[data-theme="rose"] .location-route-btn {
+	color: #fff;
+	background: rgba(139, 58, 74, 0.7);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	backdrop-filter: blur(4px);
+}
+
+[data-theme="rose"] .location-route-btn:hover {
+	background: rgba(139, 58, 74, 0.9);
+}
