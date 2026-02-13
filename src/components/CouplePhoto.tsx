@@ -8,12 +8,6 @@ interface CouplePhotoProps {
 	onUnlockAudio?: () => void;
 }
 
-function getMonogram(groomName: string, brideName: string): string {
-	const g = groomName.trim().charAt(0).toUpperCase();
-	const b = brideName.trim().charAt(0).toUpperCase();
-	return `${g}|${b}`;
-}
-
 const OPEN_DURATION = 3.4;
 
 export function CouplePhoto({ onOpen, onUnlockAudio }: CouplePhotoProps) {
@@ -60,8 +54,6 @@ export function CouplePhoto({ onOpen, onUnlockAudio }: CouplePhotoProps) {
 		opacity: 1
 	};
 
-	const monogram = getMonogram(weddingData.groomName, weddingData.brideName);
-
 	return (
 		<motion.div
 			className="couple-photo-screen"
@@ -71,9 +63,19 @@ export function CouplePhoto({ onOpen, onUnlockAudio }: CouplePhotoProps) {
 		>
 			{!isOpening && (
 				<>
-					<h1 className="couple-photo-header">ПРИГЛАШЕНИЕ НА СВАДЬБУ</h1>
-					<p className="couple-photo-monogram" aria-hidden>
-						{monogram}
+					<div className="couple-photo-top-ornament" aria-hidden>
+						<svg viewBox="0 0 120 12" width="80" height="12">
+							<line x1="0" y1="6" x2="50" y2="6" stroke="currentColor" strokeWidth="0.5" />
+							<circle cx="60" cy="6" r="3" fill="none" stroke="currentColor" strokeWidth="0.5" />
+							<circle cx="60" cy="6" r="1" fill="currentColor" />
+							<line x1="70" y1="6" x2="120" y2="6" stroke="currentColor" strokeWidth="0.5" />
+						</svg>
+					</div>
+					<h1 className="couple-photo-header">Приглашение на свадьбу</h1>
+					<p className="couple-photo-names" aria-hidden>
+						{weddingData.groomName}
+						<span className="couple-photo-ampersand">&</span>
+						{weddingData.brideName}
 					</p>
 				</>
 			)}
@@ -119,7 +121,7 @@ export function CouplePhoto({ onOpen, onUnlockAudio }: CouplePhotoProps) {
 				transition={{ duration: 0.5, ease: [0.22, 0.61, 0.36, 1] }}
 			>
 				<h1 className="couple-photo-header">День свадьбы</h1>
-				<p className="couple-photo-monogram" aria-hidden>
+				<p className="couple-photo-names couple-photo-names--large" aria-hidden>
 					{weddingData.groomName} & {weddingData.brideName}
 				</p>
 				<div className="couple-content-scroll">

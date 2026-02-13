@@ -3,32 +3,54 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 1.5rem;
+	gap: 1.25rem;
 	padding: 2rem 1.5rem 2.5rem;
-	background: var(--color-dark-alt);
+	background: linear-gradient(180deg, #0f1d2a 0%, #1b2b3a 50%, #233548 100%);
 	position: relative;
 	overflow: hidden;
-	padding-top: 5rem;
+	padding-top: 4.5rem;
+}
+
+/* Тонкий верхний орнамент */
+.couple-photo-top-ornament {
+	color: rgba(255, 255, 255, 0.35);
+	margin-bottom: 0.25rem;
 }
 
 .couple-photo-header {
 	margin: 0;
-	font-size: clamp(0.75rem, 2.5vw, 0.9rem);
+	font-size: clamp(0.7rem, 2.5vw, 0.85rem);
 	font-weight: 500;
-	letter-spacing: 0.25em;
-	color: #fff;
+	letter-spacing: 0.3em;
+	color: rgba(255, 255, 255, 0.6);
 	text-align: center;
 	text-transform: uppercase;
 }
 
-.couple-photo-monogram {
+.couple-photo-names {
 	margin: 0;
-	font-size: clamp(3.5rem, 12vw, 4rem);
-	font-weight: 400;
+	font-size: clamp(2.5rem, 10vw, 3.5rem);
+	font-weight: 300;
 	color: #fff;
-	letter-spacing: 0.02em;
-	line-height: 1;
+	letter-spacing: 0.04em;
+	line-height: 1.1;
 	text-align: center;
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+}
+
+.couple-photo-names--large {
+	font-size: clamp(2rem, 4vw, 1.75rem);
+	font-weight: 400;
+	letter-spacing: 0.05em;
+}
+
+.couple-photo-ampersand {
+	display: inline-block;
+	margin: 0 0.35em;
+	font-weight: 300;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.7em;
 }
 
 .couple-photo-wrap {
@@ -49,9 +71,7 @@
 	overflow: hidden;
 	max-width: 100vw;
 	max-height: 100vh;
-	z-index: 100;
 }
-
 
 .couple-photo-btn {
 	width: 100%;
@@ -61,9 +81,10 @@
 	background: none;
 	cursor: pointer;
 	display: block;
-	border: 2px solid rgba(255, 255, 255, 0.4);
+	border: 1px solid rgba(255, 255, 255, 0.2);
 	overflow: hidden;
-	border-radius: 6px;
+	border-radius: 8px;
+	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .couple-photo-btn:disabled {
@@ -77,13 +98,13 @@
 	object-fit: cover;
 	display: block;
 	vertical-align: middle;
-	filter: grayscale(100%);
+	filter: sepia(15%) brightness(0.95) contrast(1.05);
 	height: 100%;
 	transition: filter 1.2s ease;
 }
 
 .couple-photo-btn:disabled img {
-	filter: grayscale(100%) brightness(1.2);
+	filter: sepia(10%) brightness(1.1);
 }
 
 .couple-photo-wrap--opening .couple-photo-btn img {
@@ -95,7 +116,6 @@
 	vertical-align: middle;
 }
 
-
 .couple-photo-bloom {
 	position: absolute;
 	inset: 0;
@@ -103,9 +123,9 @@
 	pointer-events: none;
 	background: radial-gradient(
 		ellipse at center,
-		rgba(255, 255, 255, 1) 0%,
-		rgba(250, 250, 250, 0.95) 40%,
-		rgba(200, 200, 200, 0.15) 100%
+		rgba(250, 248, 245, 1) 0%,
+		rgba(250, 248, 245, 0.95) 40%,
+		rgba(200, 214, 224, 0.15) 100%
 	);
 }
 
@@ -114,7 +134,7 @@
 	font-size: clamp(0.7rem, 2.2vw, 0.85rem);
 	letter-spacing: 0.12em;
 	text-transform: none;
-	color: rgba(255, 255, 255, 0.7);
+	color: rgba(255, 255, 255, 0.55);
 	font-weight: 400;
 	pointer-events: none;
 	text-align: center;
@@ -136,12 +156,6 @@
 	margin-bottom: 0.5rem;
 }
 
-.couple-content .couple-photo-monogram {
-	font-size: clamp(2rem, 4vw, 1.75rem);
-	font-weight: 500;
-	letter-spacing: 0.05em;
-}
-
 .couple-content-scroll {
 	display: flex;
 	flex-direction: column;
@@ -153,9 +167,9 @@
 }
 
 .couple-content-scroll-line {
-	width: 2px;
+	width: 1px;
 	height: 40px;
-	background: rgba(255, 255, 255, 0.3);
+	background: rgba(255, 255, 255, 0.25);
 	border-radius: 1px;
 	position: relative;
 	overflow: visible;
@@ -165,38 +179,50 @@
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	width: 6px;
+	width: 5px;
 	height: 8px;
-	background: #fff;
-	border-radius: 2px;
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 3px;
 	top: 0;
 }
 
 .couple-content-scroll-text {
-	font-size: clamp(0.7rem, 2vw, 0.8rem);
-	letter-spacing: 0.08em;
+	font-size: clamp(0.65rem, 2vw, 0.75rem);
+	letter-spacing: 0.15em;
 	text-transform: uppercase;
-	font-weight: 500;
+	font-weight: 400;
 }
 
-/* ── Rose theme ── */
-[data-theme="rose"] .couple-photo-btn {
-	border-color: rgba(196, 122, 138, 0.6);
+/* ── Gold theme ── */
+[data-theme="gold"] .couple-photo-screen {
+	background: linear-gradient(180deg, #1e170f 0%, #2a2118 50%, #3a2f1e 100%);
 }
 
-[data-theme="rose"] .couple-photo-btn img {
-	filter: grayscale(60%) sepia(20%);
+[data-theme="gold"] .couple-photo-btn {
+	border-color: rgba(201, 168, 76, 0.35);
 }
 
-[data-theme="rose"] .couple-photo-btn:disabled img {
-	filter: grayscale(0%) sepia(0%) brightness(1.15);
+[data-theme="gold"] .couple-photo-btn img {
+	filter: sepia(25%) brightness(0.95) contrast(1.05) saturate(1.1);
 }
 
-[data-theme="rose"] .couple-photo-bloom {
+[data-theme="gold"] .couple-photo-btn:disabled img {
+	filter: sepia(15%) brightness(1.15);
+}
+
+[data-theme="gold"] .couple-photo-bloom {
 	background: radial-gradient(
 		ellipse at center,
-		rgba(255, 255, 255, 1) 0%,
-		rgba(250, 245, 247, 0.95) 40%,
-		rgba(196, 122, 138, 0.15) 100%
+		rgba(253, 248, 240, 1) 0%,
+		rgba(253, 248, 240, 0.95) 40%,
+		rgba(201, 168, 76, 0.15) 100%
 	);
+}
+
+[data-theme="gold"] .couple-photo-top-ornament {
+	color: rgba(201, 168, 76, 0.5);
+}
+
+[data-theme="gold"] .couple-photo-ampersand {
+	color: rgba(201, 168, 76, 0.7);
 }

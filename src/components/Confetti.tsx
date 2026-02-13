@@ -5,15 +5,15 @@ interface ConfettiProps {
 	/** Запуск конфетти при переключении на true */
 	fire: boolean;
 	/** Текущая тема для выбора цвета конфетти */
-	theme?: "bw" | "rose";
+	theme?: "ivory" | "gold";
 }
 
 const THEME_COLORS = {
-	bw: ["#ffffff", "#1a1a1a", "#d4d4d4", "#333333"],
-	rose: ["#ffffff", "#8b3a4a", "#c47a8a", "#e5c1ca"],
+	ivory: ["#ffffff", "#1b3a5c", "#4a6d8c", "#c8d6e0"],
+	gold: ["#ffffff", "#9e7a1a", "#c9a84c", "#f0e0b0"],
 };
 
-export function Confetti({ fire, theme = "bw" }: ConfettiProps) {
+export function Confetti({ fire, theme = "ivory" }: ConfettiProps) {
 	const hasFired = useRef(false);
 
 	useEffect(() => {

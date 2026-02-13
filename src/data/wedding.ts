@@ -1,13 +1,13 @@
-/** Путь к аудио в public/. Положите файл "I Think They Call This Love" как i-think-they-call-this-love.mp3 */
+/** Путь к аудио в public/. */
 export const weddingData = {
 	musicUrl: "/perfect.mp3",
 	/** Фото пары на первом экране (при клике открывается приглашение). Путь от корня сайта для совместимости с мессенджерами и PWA. */
 	couplePhotoUrl: "/rh.jpeg",
-	groomName: "Myrat",
-	brideName: "Melike",
+	groomName: "Kerim",
+	brideName: "Aýnur",
 	/** Телефоны для связи */
-	groomPhone: "+993 71XXXXXX",
-	bridePhone: "+993 61XXXXXX",
+	groomPhone: "+993 65XXXXXX",
+	bridePhone: "+993 63XXXXXX",
 	/** Логотип в блоке контактов (путь в public/) */
 	logoUrl: "/logo-red.png",
 	/** Доп. контакт (организатор и т.д.) */
@@ -17,47 +17,52 @@ export const weddingData = {
 	/** Ссылка на Instagram */
 	instagramUrl: "https://www.instagram.com/invitationsred",
 	instagramLabel: "Instagram",
-	weddingDate: new Date("2026-05-23T18:00:00"),
-	venue: "Bagtyýarlyk",
-	venueAddress: "пр. Битарап Туркменистан, Ашхабад",
+	weddingDate: new Date("2026-08-15T17:00:00"),
+	venue: "Berkarar",
+	venueAddress: "ул. Махтумкули, Ашхабад",
 	/** Фото ресторана (URL или путь в public/) */
-	venuePhotoUrl: "https://picsum.photos/800/450?random=venue3",
+	venuePhotoUrl: "https://picsum.photos/800/450?random=venue7",
 	/** Ссылка на карту (Google Maps и т.д.) */
 	mapUrl:
-		"https://www.google.com/maps/place/%D0%A2%D0%A0%D0%A6+%C2%AB%D0%91%D0%B0%D0%B3%D1%82%D1%8B%D1%8F%D1%80%D0%BB%D1%8B%D0%BA%C2%BB/@37.9170848,58.3657585,874m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3f70020b1b15c45f:0x41bd73daa974168!8m2!3d37.9170806!4d58.3683334!16s%2Fg%2F11cn17v7m2?entry=ttu&g_ep=EgoyMDI2MDIxMC4wIKXMDSoASAFQAw%3D%3D",
+		"https://www.google.com/maps/place/Berkarar+Mall/@37.9502,58.3798,17z",
 	schedule: [
 		{
-			time: "18:00",
-			title: "Прибытие гостей",
-			description: "Встреча гостей, welcome-напитки и лёгкая атмосфера"
+			time: "17:00",
+			title: "Встреча гостей",
+			description: "Приветственные напитки и общение в зале"
 		},
 		{
-			time: "19:00",
-			title: "Начало банкета",
-			description: "Торжественный ужин в ресторане Bagtyýarlyk"
+			time: "18:00",
+			title: "Церемония бракосочетания",
+			description: "Торжественная церемония в банкетном зале Berkarar"
+		},
+		{
+			time: "19:30",
+			title: "Праздничный банкет",
+			description: "Изысканный ужин и поздравления"
 		},
 		{
 			time: "21:00",
-			title: "Самый сладкий момент вечера",
-			description: "Свадебный торт и поздравления"
+			title: "Свадебный торт",
+			description: "Сладкий момент вечера и первый танец"
 		},
 		{
 			time: "22:00",
-			title: "Сияющий финал",
-			description: "Танцы и развлечения"
+			title: "Танцы и веселье",
+			description: "Музыка, танцы и незабываемые эмоции"
 		},
 		{
-			time: "23:00",
-			title: "Завершение вечера",
-			description: "Прощание с гостями"
+			time: "23:30",
+			title: "Прощание с гостями",
+			description: "Благодарность и тёплые прощания"
 		}
 	],
 	photos: [
-		"https://picsum.photos/400/500?random=11",
-		"https://picsum.photos/400/500?random=22",
-		"https://picsum.photos/400/500?random=33",
-		"https://picsum.photos/400/500?random=44",
-		"https://picsum.photos/400/500?random=55",
-		"https://picsum.photos/400/500?random=66"
+		"https://picsum.photos/400/500?random=71",
+		"https://picsum.photos/400/500?random=72",
+		"https://picsum.photos/400/500?random=73",
+		"https://picsum.photos/400/500?random=74",
+		"https://picsum.photos/400/500?random=75",
+		"https://picsum.photos/400/500?random=76"
 	]
 } as const;

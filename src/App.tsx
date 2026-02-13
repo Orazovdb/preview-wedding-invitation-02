@@ -9,16 +9,16 @@ import { InvitationContent } from "./components/InvitationContent";
 import { ThemeToggle } from "./components/ThemeToggle";
 import { weddingData } from "./data/wedding";
 
-type Theme = "bw" | "rose";
+type Theme = "ivory" | "gold";
 
 function getInitialTheme(): Theme {
 	try {
 		const saved = localStorage.getItem("wedding-theme");
-		if (saved === "bw" || saved === "rose") return saved;
+		if (saved === "ivory" || saved === "gold") return saved;
 	} catch {
 		/* ignore */
 	}
-	return "bw";
+	return "ivory";
 }
 
 function App() {
@@ -40,8 +40,8 @@ function App() {
 	}, [isOpen]);
 
 	useEffect(() => {
-		if (theme === "rose") {
-			document.documentElement.setAttribute("data-theme", "rose");
+		if (theme === "gold") {
+			document.documentElement.setAttribute("data-theme", "gold");
 		} else {
 			document.documentElement.removeAttribute("data-theme");
 		}
@@ -61,7 +61,7 @@ function App() {
 	};
 
 	const toggleTheme = useCallback(() => {
-		setTheme(prev => (prev === "bw" ? "rose" : "bw"));
+		setTheme(prev => (prev === "ivory" ? "gold" : "ivory"));
 	}, []);
 
 	return (

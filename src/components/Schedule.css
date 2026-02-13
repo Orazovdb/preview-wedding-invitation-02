@@ -1,6 +1,6 @@
 .schedule-section {
 	padding: 4rem 1.5rem 1rem;
-	background: #fff;
+	background: var(--color-bg);
 	color: var(--color-text);
 }
 
@@ -27,15 +27,16 @@
 	margin: 0;
 	font-size: clamp(2rem, 6vw, 2.75rem);
 	font-weight: 300;
-	letter-spacing: 0.04em;
+	letter-spacing: 0.06em;
 	line-height: 1.15;
 	color: var(--color-text);
 	text-transform: uppercase;
+	font-family: "Cormorant Garamond", "Montserrat", serif;
 }
 
 .schedule-header-line {
 	width: 40px;
-	height: 2px;
+	height: 1.5px;
 	background: var(--color-accent);
 	margin-top: 1rem;
 	border-radius: 1px;
@@ -88,15 +89,15 @@
 }
 
 .schedule-card-dot-icon {
-	font-size: 0.65rem;
+	font-size: 0.6rem;
 	color: var(--color-accent);
 	line-height: 1;
 }
 
 .schedule-card-body {
-	background: var(--color-bg);
+	background: var(--color-bg-card);
 	border: 1px solid var(--color-border);
-	border-radius: 10px;
+	border-radius: 12px;
 	padding: 1.15rem 1.25rem;
 	transition: box-shadow 0.3s, transform 0.3s;
 }
@@ -154,10 +155,10 @@
 	height: auto;
 	object-fit: cover;
 	display: block;
-	filter: grayscale(100%);
+	filter: sepia(12%) brightness(0.97) contrast(1.03);
 }
 
-/* ── Rose theme ── */
-[data-theme="rose"] .schedule-footer-image img {
-	filter: grayscale(40%) sepia(10%);
+/* ── Gold theme ── */
+[data-theme="gold"] .schedule-footer-image img {
+	filter: sepia(20%) brightness(0.95) saturate(1.1);
 }

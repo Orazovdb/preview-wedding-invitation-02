@@ -1,44 +1,44 @@
 :root {
-	font-family: "Montserrat", system-ui, sans-serif !important;
+	font-family: "Cormorant Garamond", "Montserrat", system-ui, serif !important;
 	line-height: 1.5;
 	font-weight: 400;
-	color: #1a1a1a;
-	background-color: #fff;
+	color: #1b2b3a;
+	background-color: #faf8f5;
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* Палитра: чёрный + белый */
-	--color-bg: #fafafa;
-	--color-bg-soft: #f2f2f2;
-	--color-bg-card: #fff;
-	--color-accent: #1a1a1a;
-	--color-accent-light: #555;
-	--color-text: #1a1a1a;
-	--color-text-muted: #666;
-	--color-border: rgba(0, 0, 0, 0.12);
-	--color-shadow: rgba(0, 0, 0, 0.08);
-	--color-heart: rgba(0, 0, 0, 0.35);
-	--color-dark: #1a1a1a;
-	--color-dark-alt: #2a2a2a;
+	/* Палитра: ivory — элегантный тёмно-синий + слоновая кость */
+	--color-bg: #faf8f5;
+	--color-bg-soft: #f0ede8;
+	--color-bg-card: #fffdf9;
+	--color-accent: #1b3a5c;
+	--color-accent-light: #4a6d8c;
+	--color-text: #1b2b3a;
+	--color-text-muted: #5a6b7d;
+	--color-border: rgba(27, 58, 92, 0.15);
+	--color-shadow: rgba(27, 58, 92, 0.08);
+	--color-heart: rgba(27, 58, 92, 0.35);
+	--color-dark: #1b2b3a;
+	--color-dark-alt: #0f1d2a;
 }
 
-/* ── Розовая тема ── */
-[data-theme="rose"] {
-	color: #2e1e2e;
-	background-color: #faf5f7;
-	--color-bg: #faf5f7;
-	--color-bg-soft: #f3eaee;
-	--color-bg-card: #fffbfc;
-	--color-accent: #8b3a4a;
-	--color-accent-light: #c47a8a;
-	--color-text: #2e1e2e;
-	--color-text-muted: #5a3d4d;
-	--color-border: rgba(139, 58, 74, 0.25);
-	--color-shadow: rgba(139, 58, 74, 0.12);
-	--color-heart: rgba(139, 58, 74, 0.45);
-	--color-dark: #2d2230;
-	--color-dark-alt: #2d2230;
+/* ── Золотая тема ── */
+[data-theme="gold"] {
+	color: #3a2f1e;
+	background-color: #fdf8f0;
+	--color-bg: #fdf8f0;
+	--color-bg-soft: #f5ede2;
+	--color-bg-card: #fffcf5;
+	--color-accent: #9e7a1a;
+	--color-accent-light: #c9a84c;
+	--color-text: #3a2f1e;
+	--color-text-muted: #6b5d4a;
+	--color-border: rgba(158, 122, 26, 0.2);
+	--color-shadow: rgba(158, 122, 26, 0.1);
+	--color-heart: rgba(158, 122, 26, 0.4);
+	--color-dark: #2a2118;
+	--color-dark-alt: #1e170f;
 }
 
 *,
@@ -51,13 +51,13 @@ body {
 	margin: 0;
 	min-width: 320px;
 	min-height: 100vh;
-	font-family: "Montserrat", system-ui, sans-serif !important;
+	font-family: "Cormorant Garamond", "Montserrat", system-ui, serif !important;
 }
 
-/* Тонкий тёмный скроллбар как на референсе */
+/* Тонкий скроллбар */
 html {
 	scrollbar-width: thin;
-	scrollbar-color: #333 #fff;
+	scrollbar-color: #4a6d8c #faf8f5;
 }
 
 ::-webkit-scrollbar {
@@ -65,16 +65,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-	background: #fff;
+	background: #faf8f5;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: #333;
+	background: #4a6d8c;
 	border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-	background: #1a1a1a;
+	background: #1b3a5c;
 }
 
 #root {

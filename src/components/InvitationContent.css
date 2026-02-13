@@ -6,10 +6,11 @@
   padding: 3rem 1.5rem;
   text-align: center;
   background: var(--color-dark);
-  color: #fff;
+  color: rgba(255, 255, 255, 0.85);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.05em;
+  font-style: italic;
 }
 
 .invitation-footer p {
