@@ -1,74 +1,210 @@
-.contact-block {
+/* ═══════════════════════════════════════════
+   Contact — блок контактов
+   ═══════════════════════════════════════════ */
+
+.ct-section {
 	max-width: 720px;
-	margin: 3rem auto 3rem;
-	padding: 2.5rem 2rem 3rem;
+	margin: 0 auto;
+	padding: 3.5rem 1.5rem 3rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-.contact-logo {
-	display: block;
-	height: 100px;
-	width: auto;
-	max-width: 250px;
-	object-fit: contain;
-	margin-bottom: 1.5rem;
-}
-
-.contact-title {
-	margin: 0 0 2rem;
-	font-size: clamp(1.75rem, 4vw, 2.25rem);
-	font-weight: 300;
-	color: var(--color-text);
-	text-align: center;
-	letter-spacing: 0.2em;
-	text-transform: uppercase;
-	width: fit-content;
-	margin: 0 auto 2rem;
-	font-family: "Cormorant Garamond", "Montserrat", serif;
-}
-
-.contact-list {
+/* ══════════════════════════════════════
+   Header
+   ══════════════════════════════════════ */
+.ct-header {
 	display: flex;
 	flex-direction: column;
-	gap: 1.25rem;
 	align-items: center;
 	text-align: center;
+	margin-bottom: 2rem;
 }
 
-.contact-item {
-	display: flex;
-	flex-direction: column;
-	gap: 0.25rem;
-}
-
-.contact-label {
-	font-size: clamp(0.85rem, 2vw, 0.95rem);
-	color: var(--color-text-muted);
+.ct-header-label {
+	font-size: clamp(0.62rem, 1.8vw, 0.72rem);
 	font-weight: 500;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: var(--color-accent-light);
+	margin-bottom: 0.25rem;
 }
 
-.contact-phone {
-	font-size: clamp(1rem, 2.5vw, 1.15rem);
+.ct-header-title {
+	margin: 0;
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+	font-weight: 300;
+	letter-spacing: 0.06em;
+	color: var(--color-text);
+}
+
+.ct-header-ornament {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.75rem;
+}
+
+.ct-header-line {
+	width: 28px;
+	height: 1px;
+	background: var(--color-border);
+}
+
+.ct-header-dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: var(--color-accent-light);
+	opacity: 0.45;
+}
+
+/* ══════════════════════════════════════
+   Contact cards grid
+   ══════════════════════════════════════ */
+.ct-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+	gap: 0.85rem;
+	width: min(420px, 100%);
+	margin-bottom: 1.75rem;
+}
+
+.ct-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	padding: 1.25rem 1rem;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: 14px;
+	text-decoration: none;
+	text-align: center;
+	transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+	box-shadow: 0 3px 12px var(--color-shadow);
+}
+
+.ct-card:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 8px 28px var(--color-shadow);
+	border-color: var(--color-accent-light);
+}
+
+.ct-icon {
+	color: var(--color-accent);
+	margin-bottom: 0.15rem;
+	opacity: 0.7;
+}
+
+.ct-card-name {
+	font-size: clamp(0.72rem, 1.8vw, 0.8rem);
+	font-weight: 500;
+	letter-spacing: 0.06em;
+	color: var(--color-text-muted);
+	text-transform: uppercase;
+}
+
+.ct-card-value {
+	font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+	font-weight: 600;
+	color: var(--color-text);
+	line-height: 1.35;
+	word-break: break-all;
+}
+
+/* Акцентная карточка (Instagram) */
+.ct-card--accent .ct-card-value {
+	color: var(--color-accent);
+}
+
+/* ══════════════════════════════════════
+   Organizer
+   ══════════════════════════════════════ */
+.ct-org {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	margin-bottom: 1.5rem;
+	padding: 1rem 1.5rem;
+	border-top: 1px solid var(--color-border);
+	border-bottom: 1px solid var(--color-border);
+	width: min(380px, 100%);
+}
+
+.ct-org-label {
+	margin: 0 0 0.4rem;
+	font-size: clamp(0.75rem, 2vw, 0.85rem);
+	font-weight: 500;
+	color: var(--color-text-muted);
+	font-style: italic;
+}
+
+.ct-org-phones {
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.ct-org-phone {
+	font-size: clamp(0.85rem, 2.2vw, 0.95rem);
 	font-weight: 600;
 	color: var(--color-text);
 	text-decoration: none;
 	transition: color 0.2s;
 }
 
-.contact-phone:hover {
+.ct-org-phone:hover {
 	color: var(--color-accent-light);
 }
 
-.contact-link {
-	font-size: clamp(1rem, 2.5vw, 1.15rem);
-	font-weight: 600;
+.ct-org-sep {
+	color: var(--color-text-muted);
+	opacity: 0.5;
+	font-size: 1rem;
+}
+
+.ct-org-instagram {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 0.75rem;
+	font-size: clamp(0.78rem, 2vw, 0.88rem);
+	font-weight: 500;
 	color: var(--color-accent);
 	text-decoration: none;
-	transition: color 0.2s;
+	transition: color 0.2s, opacity 0.2s;
+	opacity: 0.8;
 }
 
-.contact-link:hover {
+.ct-org-instagram:hover {
 	color: var(--color-accent-light);
+	opacity: 1;
+}
+
+.ct-org-instagram .ct-icon {
+	width: 16px;
+	height: 16px;
+}
+
+/* ══════════════════════════════════════
+   Logo
+   ══════════════════════════════════════ */
+.ct-logo {
+	display: block;
+	height: 80px;
+	width: auto;
+	max-width: 200px;
+	object-fit: contain;
+	opacity: 0.65;
+	transition: opacity 0.3s;
+}
+
+.ct-logo:hover {
+	opacity: 0.85;
 }

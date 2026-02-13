@@ -3,196 +3,198 @@ import { weddingData } from "../data/wedding";
 import "./DateLocation.css";
 
 const WEEKDAYS = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
-const MONTHS = [
-	"ЯНВАРЬ",
-	"ФЕВРАЛЬ",
-	"МАРТ",
-	"АПРЕЛЬ",
-	"МАЙ",
-	"ИЮНЬ",
-	"ИЮЛЬ",
-	"АВГУСТ",
-	"СЕНТЯБРЬ",
-	"ОКТЯБРЬ",
-	"НОЯБРЬ",
-	"ДЕКАБРЬ"
+const MONTHS_RU = [
+	"Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+	"Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"
+];
+const MONTHS_GENITIVE = [
+	"января", "февраля", "марта", "апреля", "мая", "июня",
+	"июля", "августа", "сентября", "октября", "ноября", "декабря"
 ];
 
 function buildCalendarGrid(date: Date): (number | null)[] {
 	const year = date.getFullYear();
 	const month = date.getMonth();
-
 	const firstDay = new Date(year, month, 1);
 	const lastDay = new Date(year, month + 1, 0);
 	const daysInMonth = lastDay.getDate();
-
 	const startOffset = (firstDay.getDay() + 6) % 7;
+
 	const grid: (number | null)[] = [];
-
-	for (let i = 0; i < startOffset; i++) {
-		grid.push(null);
-	}
-	for (let d = 1; d <= daysInMonth; d++) {
-		grid.push(d);
-	}
-
+	for (let i = 0; i < startOffset; i++) grid.push(null);
+	for (let d = 1; d <= daysInMonth; d++) grid.push(d);
 	return grid;
 }
 
-function HeartIcon({ className }: { className?: string }) {
-	return (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			height="34px"
-			width="34px"
-			version="1.1"
-			viewBox="0 0 204.152 204.152"
-			className={className}
-		>
-			<g>
-				<g>
-					<path
-						d="M194.549,32.099c-8.747-11.485-22.504-18.088-42.08-20.188c-1.585-0.161-3.257-0.261-4.978-0.261    c-17.357,0-34.654,8.142-45.416,21.079C91.302,19.791,74.02,11.649,56.67,11.649c-1.721,0-3.382,0.097-5,0.261    c-19.548,2.101-33.298,8.704-42.051,20.185c-8.675,11.384-11.502,26.813-8.4,45.863c4.534,27.639,40.319,61.288,69.068,88.337    l0.659,0.619c8.006,7.537,14.924,14.051,19.43,18.896c0.608,0.684,6.098,6.692,12.107,6.692c6.048,0,11.417-6.102,11.907-6.689    c4.789-5.189,12.562-12.551,20.231-19.802c28.427-26.97,63.814-60.536,68.299-88.065C206.04,58.911,203.227,43.49,194.549,32.099z     M195.69,76.766c-4.087,25.098-38.476,57.723-66.252,84.064c-7.605,7.201-15.475,14.641-20.528,20.124    c-1.256,1.478-4.423,4.227-6.428,4.227c-1.943,0-5.107-2.527-6.682-4.287c-4.735-5.089-11.731-11.681-19.838-19.311l-0.659-0.623    c-27.947-26.287-62.727-59.001-66.864-84.185c-2.759-16.982-0.408-30.52,7.004-40.244c7.458-9.792,19.569-15.464,36.984-17.34    c1.367-0.136,2.77-0.222,4.241-0.222c16.724,0,33.358,8.593,42.37,21.899l3.035,4.463l3.031-4.463    c9.012-13.306,25.65-21.899,42.388-21.899c1.464,0,2.877,0.086,4.219,0.222c17.44,1.872,29.547,7.544,37.016,17.343    C196.13,46.264,198.478,59.799,195.69,76.766z"
-					/>
-				</g>
-			</g>
-		</svg>
-	);
-}
-
-function Ornament() {
-	return (
-		<svg
-			className="date-ornament"
-			viewBox="0 0 120 20"
-			width="120"
-			height="20"
-			aria-hidden
-		>
-			<line x1="0" y1="10" x2="45" y2="10" stroke="currentColor" strokeWidth="1" />
-			<circle cx="60" cy="10" r="4" fill="none" stroke="currentColor" strokeWidth="1" />
-			<circle cx="60" cy="10" r="1.5" fill="currentColor" />
-			<line x1="75" y1="10" x2="120" y2="10" stroke="currentColor" strokeWidth="1" />
-		</svg>
-	);
-}
-
-const calendarCell = {
-	hidden: { opacity: 0, scale: 0.8 },
-	visible: { opacity: 1, scale: 1 }
+/* ── Анимации ── */
+const fadeUp = {
+	hidden: { opacity: 0, y: 24 },
+	visible: { opacity: 1, y: 0 },
 };
 
-const calendarGrid = {
+const calendarCellVariant = {
+	hidden: { opacity: 0, scale: 0.7 },
+	visible: { opacity: 1, scale: 1 },
+};
+
+const calendarGridVariant = {
 	hidden: { opacity: 0 },
-	visible: {
-		opacity: 1,
-		transition: { staggerChildren: 0.015 }
-	}
+	visible: { opacity: 1, transition: { staggerChildren: 0.018, delayChildren: 0.1 } },
 };
 
 export function DateLocation() {
-	const weddingDate = weddingData.weddingDate;
-	const month = weddingDate.getMonth();
-	const year = weddingDate.getFullYear();
-	const dayOfWedding = weddingDate.getDate();
-	const grid = buildCalendarGrid(weddingDate);
+	const wd = weddingData.weddingDate;
+	const day = wd.getDate();
+	const month = wd.getMonth();
+	const year = wd.getFullYear();
+	const grid = buildCalendarGrid(wd);
 
-	const timeStr = weddingDate.toLocaleTimeString("ru-RU", {
+	const timeStr = wd.toLocaleTimeString("ru-RU", {
 		hour: "2-digit",
-		minute: "2-digit"
+		minute: "2-digit",
 	});
 
 	return (
-		<section className="date-location-section">
+		<section className="dl-section">
+			{/* ═══ Блок «Сохраните дату» ═══ */}
 			<motion.div
-				className="date-intro-block"
-				initial={{ opacity: 0, y: 20 }}
-				whileInView={{ opacity: 1, y: 0 }}
+				className="dl-hero"
+				initial="hidden"
+				whileInView="visible"
 				viewport={{ once: true }}
-				transition={{ duration: 0.5 }}
+				transition={{ staggerChildren: 0.12 }}
 			>
-				<Ornament />
-				<p className="date-intro-text">
-					Мы будем счастливы разделить с вами радость события
-				</p>
+				{/* Подзаголовок */}
+				<motion.span
+					className="dl-hero-label"
+					variants={fadeUp}
+					transition={{ duration: 0.6 }}
+				>
+					Сохраните дату
+				</motion.span>
 
-				<div className="date-calendar-card">
-					<h3 className="date-calendar-title">
-						{MONTHS[month]} {year}
-					</h3>
-					<div className="date-calendar-weekdays">
-						{WEEKDAYS.map(d => (
-							<span key={d} className="date-calendar-weekday">
-								{d}
-							</span>
-						))}
+				{/* Большая дата: число + линия + месяц/год */}
+				<motion.div
+					className="dl-hero-date"
+					variants={fadeUp}
+					transition={{ duration: 0.7 }}
+				>
+					<span className="dl-hero-day">{day}</span>
+					<div className="dl-hero-sep">
+						<span className="dl-hero-sep-line" />
 					</div>
-					<motion.div
-						className="date-calendar-grid"
-						variants={calendarGrid}
-						initial="hidden"
-						whileInView="visible"
-						viewport={{ once: true }}
-					>
-						{grid.map((cell, i) => {
-							const isWeddingDay = cell === dayOfWedding;
-							return (
-								<motion.div
-									key={i}
-									className={`date-calendar-cell ${
-										isWeddingDay ? "date-calendar-cell-wedding" : ""
-									}`}
-									variants={calendarCell}
-								>
-									{cell !== null ? (
-										<>
-											<span className="date-calendar-day">{cell}</span>
-											{isWeddingDay && (
-												<span className="date-calendar-heart">
-													<HeartIcon className="date-calendar-heart-icon" />
-												</span>
-											)}
-										</>
-									) : null}
-								</motion.div>
-							);
-						})}
-					</motion.div>
-
-					<div className="date-calendar-time">
-						<span className="date-calendar-time-label">Начало в</span>
-						<span className="date-calendar-time-value">{timeStr}</span>
+					<div className="dl-hero-my">
+						<span className="dl-hero-month">{MONTHS_GENITIVE[month]}</span>
+						<span className="dl-hero-year">{year}</span>
 					</div>
-				</div>
+				</motion.div>
 
-				<p className="date-occasion">По случаю нашей свадьбы</p>
-				<Ornament />
+				{/* Текст-приглашение */}
+				<motion.p
+					className="dl-hero-text"
+					variants={fadeUp}
+					transition={{ duration: 0.6 }}
+				>
+					Мы будем счастливы разделить с&nbsp;вами радость этого дня
+				</motion.p>
 			</motion.div>
 
+			{/* ═══ Календарь ═══ */}
 			<motion.div
-				className="location-block"
-				initial={{ opacity: 0, y: 24 }}
-				whileInView={{ opacity: 1, y: 0 }}
+				className="dl-calendar"
+				initial="hidden"
+				whileInView="visible"
 				viewport={{ once: true }}
-				transition={{ duration: 0.5, delay: 0.1 }}
+				transition={{ duration: 0.6, delay: 0.1 }}
+				variants={fadeUp}
 			>
-				<div className="location-overlay" />
-				<div className="location-content">
-					<span className="location-label">LOCATION</span>
-					<h2 className="location-title">Ресторан «{weddingData.venue}»</h2>
+				{/* Заголовок месяца */}
+				<div className="dl-cal-header">
+					<span className="dl-cal-header-line" />
+					<h3 className="dl-cal-title">
+						{MONTHS_RU[month]} {year}
+					</h3>
+					<span className="dl-cal-header-line" />
+				</div>
+
+				{/* Дни недели */}
+				<div className="dl-cal-weekdays">
+					{WEEKDAYS.map((d) => (
+						<span key={d} className="dl-cal-wd">{d}</span>
+					))}
+				</div>
+
+				{/* Сетка дней */}
+				<motion.div
+					className="dl-cal-grid"
+					variants={calendarGridVariant}
+					initial="hidden"
+					whileInView="visible"
+					viewport={{ once: true }}
+				>
+					{grid.map((cell, i) => {
+						const isWedding = cell === day;
+						return (
+							<motion.div
+								key={i}
+								className={`dl-cal-cell ${isWedding ? "dl-cal-cell--active" : ""}`}
+								variants={calendarCellVariant}
+								transition={{ duration: 0.3, ease: "easeOut" }}
+							>
+								{cell !== null && (
+									<span className="dl-cal-num">{cell}</span>
+								)}
+								{isWedding && (
+									<span className="dl-cal-ring" aria-hidden />
+								)}
+							</motion.div>
+						);
+					})}
+				</motion.div>
+
+				{/* Время начала */}
+				<div className="dl-cal-time">
+					<svg className="dl-cal-time-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+						<circle cx="12" cy="12" r="10" />
+						<polyline points="12 6 12 12 16 14" />
+					</svg>
+					<span className="dl-cal-time-label">Начало в</span>
+					<span className="dl-cal-time-value">{timeStr}</span>
+				</div>
+			</motion.div>
+
+			{/* ═══ Локация ═══ */}
+			<motion.div
+				className="dl-location"
+				initial="hidden"
+				whileInView="visible"
+				viewport={{ once: true }}
+				transition={{ duration: 0.6, delay: 0.15 }}
+				variants={fadeUp}
+			>
+				<div className="dl-loc-overlay" />
+				<div className="dl-loc-content">
+					<span className="dl-loc-badge">Место проведения</span>
+
+					<h2 className="dl-loc-name">
+						Ресторан «{weddingData.venue}»
+					</h2>
+
 					{weddingData.venueAddress && (
-						<p className="location-address">{weddingData.venueAddress}</p>
+						<p className="dl-loc-address">{weddingData.venueAddress}</p>
 					)}
+
 					{weddingData.mapUrl && (
 						<a
 							href={weddingData.mapUrl}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="location-route-btn"
+							className="dl-loc-btn"
 						>
-							<span className="location-route-btn-icon" aria-hidden>
-								&#9872;
-							</span>
+							<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+								<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" />
+								<circle cx="12" cy="10" r="3" />
+							</svg>
 							Посмотреть на карте
 						</a>
 					)}

@@ -1,126 +1,169 @@
-.schedule-section {
+/* ═══════════════════════════════════════════
+   Schedule — программа свадебного дня
+   ═══════════════════════════════════════════ */
+
+.sch-section {
 	padding: 4rem 1.5rem 1rem;
 	background: var(--color-bg);
 	color: var(--color-text);
 }
 
-/* ── Header ── */
-
-.schedule-header {
+/* ══════════════════════════════════════
+   Header
+   ══════════════════════════════════════ */
+.sch-header {
 	text-align: center;
-	margin-bottom: 3rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	margin-bottom: 2.75rem;
 }
 
-.schedule-header-label {
-	font-size: clamp(0.65rem, 1.8vw, 0.75rem);
-	font-weight: 600;
+.sch-header-label {
+	font-size: clamp(0.62rem, 1.8vw, 0.72rem);
+	font-weight: 500;
 	letter-spacing: 0.3em;
 	text-transform: uppercase;
 	color: var(--color-accent-light);
-	margin-bottom: 0.35rem;
+	margin-bottom: 0.3rem;
 }
 
-.schedule-header-title {
+.sch-header-title {
 	margin: 0;
-	font-size: clamp(2rem, 6vw, 2.75rem);
-	font-weight: 300;
-	letter-spacing: 0.06em;
-	line-height: 1.15;
-	color: var(--color-text);
-	text-transform: uppercase;
 	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(1.8rem, 6vw, 2.5rem);
+	font-weight: 300;
+	letter-spacing: 0.05em;
+	line-height: 1.2;
+	color: var(--color-text);
 }
 
-.schedule-header-line {
-	width: 40px;
-	height: 1.5px;
-	background: var(--color-accent);
-	margin-top: 1rem;
-	border-radius: 1px;
+.sch-header-ornament {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-top: 0.85rem;
 }
 
-/* ── Timeline ── */
+.sch-header-ornament-line {
+	width: 32px;
+	height: 1px;
+	background: var(--color-border);
+}
 
-.schedule-timeline {
+.sch-header-ornament-dot {
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background: var(--color-accent-light);
+	opacity: 0.5;
+}
+
+/* ══════════════════════════════════════
+   Timeline
+   ══════════════════════════════════════ */
+.sch-timeline {
 	position: relative;
-	max-width: 480px;
+	max-width: 440px;
 	margin: 0 auto;
-	padding-left: 2.5rem;
+	padding-left: 3rem;
 }
 
-.schedule-timeline-track {
+/* Вертикальный трек */
+.sch-track {
 	position: absolute;
-	left: 0.6rem;
-	top: 0.5rem;
-	bottom: 0.5rem;
+	left: 1.05rem;
+	top: 0;
+	bottom: 2rem;
 	width: 1px;
 	background: linear-gradient(
 		180deg,
 		var(--color-accent-light) 0%,
-		var(--color-border) 50%,
+		var(--color-border) 60%,
 		transparent 100%
 	);
 }
 
-/* ── Card ── */
-
-.schedule-card {
+/* ══════════════════════════════════════
+   Item (node + card)
+   ══════════════════════════════════════ */
+.sch-item {
 	position: relative;
-	margin-bottom: 2rem;
+	padding-bottom: 1.75rem;
 }
 
-.schedule-card:last-child {
-	margin-bottom: 0;
+.sch-item:last-child {
+	padding-bottom: 0;
 }
 
-.schedule-card-dot {
+/* ── Узел на таймлайне ── */
+.sch-node {
 	position: absolute;
-	left: -2.5rem;
-	top: 0.15rem;
-	width: 1.25rem;
-	height: 1.25rem;
+	left: -3rem;
+	top: 0.2rem;
+	width: 2.1rem;
+	height: 2.1rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	transform: translateX(calc(-50% + 0.65rem));
 }
 
-.schedule-card-dot-icon {
-	font-size: 0.6rem;
+.sch-node-circle {
+	width: 2.1rem;
+	height: 2.1rem;
+	border-radius: 50%;
+	background: var(--color-bg-card);
+	border: 1.5px solid var(--color-border);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: var(--color-accent);
-	line-height: 1;
+	box-shadow: 0 2px 8px var(--color-shadow);
+	transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.schedule-card-body {
+.sch-item:hover .sch-node-circle {
+	border-color: var(--color-accent-light);
+	box-shadow: 0 2px 12px var(--color-shadow);
+}
+
+/* ── Карточка ── */
+.sch-card {
 	background: var(--color-bg-card);
 	border: 1px solid var(--color-border);
-	border-radius: 12px;
-	padding: 1.15rem 1.25rem;
+	border-radius: 14px;
+	padding: 1.1rem 1.2rem;
 	transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.schedule-card-body:hover {
-	box-shadow: 0 4px 18px var(--color-shadow);
-	transform: translateY(-1px);
+.sch-card:hover {
+	box-shadow: 0 6px 24px var(--color-shadow);
+	transform: translateY(-2px);
 }
 
-.schedule-card-time {
-	display: inline-block;
-	font-size: 0.7rem;
-	font-weight: 700;
-	letter-spacing: 0.1em;
-	color: #fff;
-	background: var(--color-accent);
-	padding: 0.2rem 0.6rem;
-	border-radius: 4px;
-	margin-bottom: 0.5rem;
+.sch-card-top {
+	display: flex;
+	align-items: center;
+	margin-bottom: 0.4rem;
+}
+
+.sch-card-time {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	font-size: clamp(0.65rem, 1.7vw, 0.72rem);
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	color: var(--color-accent);
+	background: transparent;
+	border: 1.5px solid var(--color-accent);
+	border-radius: 20px;
+	padding: 0.2rem 0.65rem;
 	font-variant-numeric: tabular-nums;
+	opacity: 0.85;
 }
 
-.schedule-card-title {
+.sch-card-title {
 	margin: 0;
 	font-size: clamp(0.95rem, 2.5vw, 1.05rem);
 	font-weight: 600;
@@ -129,36 +172,40 @@
 	line-height: 1.35;
 }
 
-.schedule-card-desc {
-	margin: 0.35rem 0 0;
-	font-size: 0.85rem;
+.sch-card-desc {
+	margin: 0.3rem 0 0;
+	font-size: clamp(0.8rem, 2vw, 0.85rem);
 	font-weight: 400;
 	color: var(--color-text-muted);
-	line-height: 1.5;
+	line-height: 1.55;
 }
 
-/* ── Footer image ── */
-
-.schedule-footer-image {
-	margin-top: 2.5rem;
+/* ══════════════════════════════════════
+   Footer photo
+   ══════════════════════════════════════ */
+.sch-photo {
+	margin: 2.5rem auto 0;
 	text-align: center;
-	border-radius: 14px;
+	border-radius: 16px;
 	overflow: hidden;
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-	box-shadow: 0 8px 30px var(--color-shadow);
+	max-width: 520px;
+	box-shadow:
+		0 8px 32px var(--color-shadow),
+		0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
-.schedule-footer-image img {
+.sch-photo img {
 	width: 100%;
 	height: auto;
 	object-fit: cover;
 	display: block;
-	filter: sepia(12%) brightness(0.97) contrast(1.03);
+	filter: sepia(8%) brightness(0.98) contrast(1.02);
+	transition: filter 0.4s;
 }
 
-/* ── Gold theme ── */
-[data-theme="gold"] .schedule-footer-image img {
-	filter: sepia(20%) brightness(0.95) saturate(1.1);
+/* ══════════════════════════════════════
+   Gold theme
+   ══════════════════════════════════════ */
+[data-theme="gold"] .sch-photo img {
+	filter: sepia(18%) brightness(0.96) saturate(1.08);
 }

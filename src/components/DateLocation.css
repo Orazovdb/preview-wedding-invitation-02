@@ -1,288 +1,363 @@
-.date-location-section {
-	padding: 3.5rem 1.5rem 0;
+/* ═══════════════════════════════════════════
+   DateLocation — дата, календарь, локация
+   ═══════════════════════════════════════════ */
+
+.dl-section {
+	padding: 4rem 1.5rem 0;
 	background: var(--color-bg);
 	color: var(--color-text);
-}
-
-/* ── Intro block ── */
-
-.date-intro-block {
-	margin-bottom: 2.5rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
+	gap: 2.5rem;
 }
 
-.date-ornament {
+/* ══════════════════════════════════════
+   Hero — «Сохраните дату»
+   ══════════════════════════════════════ */
+.dl-hero {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 0;
+}
+
+.dl-hero-label {
+	font-size: clamp(0.65rem, 2vw, 0.75rem);
+	font-weight: 500;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
 	color: var(--color-accent-light);
-	opacity: 0.5;
 	margin-bottom: 1.25rem;
 }
 
-.date-intro-text {
-	margin: 0 0 1.5rem;
-	font-size: clamp(1rem, 2.5vw, 1.15rem);
-	color: var(--color-text);
-	font-weight: 400;
-	line-height: 1.7;
-	text-align: center;
-	max-width: 340px;
-	font-style: italic;
+/* ── Большая дата: число | месяц/год ── */
+.dl-hero-date {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
 }
 
-/* ── Calendar card ── */
+.dl-hero-day {
+	font-family: "Cormorant Garamond", serif;
+	font-size: clamp(4.5rem, 16vw, 7rem);
+	font-weight: 300;
+	line-height: 1;
+	color: var(--color-accent);
+	letter-spacing: -0.02em;
+}
 
-.date-calendar-card {
+.dl-hero-sep {
+	display: flex;
+	align-items: center;
+	align-self: stretch;
+	padding: 0.5rem 0;
+}
+
+.dl-hero-sep-line {
+	width: 1px;
+	height: 100%;
+	background: var(--color-border);
+}
+
+.dl-hero-my {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.1rem;
+}
+
+.dl-hero-month {
+	font-family: "Cormorant Garamond", serif;
+	font-size: clamp(1.3rem, 4.5vw, 1.8rem);
+	font-weight: 400;
+	color: var(--color-text);
+	text-transform: capitalize;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+}
+
+.dl-hero-year {
+	font-size: clamp(0.75rem, 2vw, 0.85rem);
+	font-weight: 400;
+	letter-spacing: 0.25em;
+	color: var(--color-text-muted);
+}
+
+.dl-hero-text {
+	margin: 1.5rem 0 0;
+	font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+	font-weight: 400;
+	font-style: italic;
+	line-height: 1.7;
+	color: var(--color-text-muted);
+	text-align: center;
+	max-width: 320px;
+}
+
+/* ══════════════════════════════════════
+   Календарь
+   ══════════════════════════════════════ */
+.dl-calendar {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: min(340px, 88vw);
-	margin: 0 auto 1.5rem;
-	padding: 2rem 1.5rem;
+	width: min(340px, 90vw);
+	padding: 1.75rem 1.5rem 1.5rem;
 	background: var(--color-bg-card);
 	border: 1px solid var(--color-border);
-	border-radius: 14px;
-	box-shadow: 0 6px 30px var(--color-shadow);
+	border-radius: 16px;
+	box-shadow:
+		0 4px 24px var(--color-shadow),
+		0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
-.date-calendar-title {
-	margin: 0 0 1rem;
-	font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+/* ── Заголовок: линия — месяц — линия ── */
+.dl-cal-header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.dl-cal-header-line {
+	flex: 1;
+	height: 1px;
+	background: var(--color-border);
+}
+
+.dl-cal-title {
+	margin: 0;
+	font-size: clamp(0.75rem, 2vw, 0.85rem);
 	font-weight: 600;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.18em;
 	color: var(--color-accent);
 	text-transform: uppercase;
+	white-space: nowrap;
 }
 
-.date-calendar-weekdays {
+/* ── Дни недели ── */
+.dl-cal-weekdays {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	gap: 2px 6px;
-	margin-bottom: 0.4rem;
-	font-size: clamp(0.65rem, 1.6vw, 0.7rem);
-	letter-spacing: 0.04em;
-	color: var(--color-text-muted);
-	opacity: 0.8;
 	width: 100%;
+	margin-bottom: 0.35rem;
 }
 
-.date-calendar-weekday {
+.dl-cal-wd {
 	text-align: center;
-	min-width: 1.8em;
-	font-weight: 500;
+	font-size: clamp(0.6rem, 1.5vw, 0.65rem);
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	color: var(--color-text-muted);
+	opacity: 0.65;
+	padding: 0.25rem 0;
 }
 
-.date-calendar-grid {
+/* ── Сетка дней ── */
+.dl-cal-grid {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	gap: 2px 6px;
-	font-size: clamp(0.85rem, 2vw, 0.9rem);
+	gap: 3px;
 	width: 100%;
 }
 
-.date-calendar-cell {
+.dl-cal-cell {
+	position: relative;
 	aspect-ratio: 1;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 1.8em;
-	position: relative;
-	color: var(--color-text);
 	border-radius: 50%;
-	transition: background 0.2s;
 }
 
-.date-calendar-cell-wedding {
-	position: relative;
-}
-
-.date-calendar-day {
-	z-index: 1;
-}
-
-.date-calendar-heart {
-	position: absolute;
-	top: 60%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	color: var(--color-accent);
-	z-index: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.date-calendar-heart-icon {
-	animation: date-heart-pulse 1.4s ease-in-out infinite;
-	transform-origin: center;
-}
-
-.date-calendar-cell-wedding .date-calendar-day {
+.dl-cal-num {
 	position: relative;
 	z-index: 2;
+	font-size: clamp(0.8rem, 2vw, 0.88rem);
+	font-weight: 400;
+	color: var(--color-text);
+	line-height: 1;
+}
+
+/* ── Свадебный день — выделение ── */
+.dl-cal-cell--active {
+	position: relative;
+}
+
+.dl-cal-cell--active .dl-cal-num {
 	font-weight: 700;
 	color: var(--color-accent);
 }
 
-@keyframes date-heart-pulse {
-	0%,
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
-	50% {
-		opacity: 0.94;
-		transform: scale(1.1);
-	}
+.dl-cal-ring {
+	position: absolute;
+	inset: 2px;
+	border: 2px solid var(--color-accent);
+	border-radius: 50%;
+	opacity: 0.35;
+	animation: dl-ring-pulse 2s ease-in-out infinite;
 }
 
-/* ── Time badge ── */
+@keyframes dl-ring-pulse {
+	0%, 100% { opacity: 0.3; transform: scale(1); }
+	50%      { opacity: 0.55; transform: scale(1.08); }
+}
 
-.date-calendar-time {
+/* ── Время ── */
+.dl-cal-time {
 	display: flex;
 	align-items: center;
-	gap: 0.5rem;
-	margin-top: 1.25rem;
+	gap: 0.45rem;
+	margin-top: 1.1rem;
 	padding-top: 1rem;
 	border-top: 1px solid var(--color-border);
 	width: 100%;
 	justify-content: center;
 }
 
-.date-calendar-time-label {
-	font-size: 0.8rem;
+.dl-cal-time-icon {
+	color: var(--color-accent-light);
+	opacity: 0.6;
+	flex-shrink: 0;
+}
+
+.dl-cal-time-label {
+	font-size: 0.78rem;
 	color: var(--color-text-muted);
 	font-weight: 400;
 	letter-spacing: 0.04em;
-	text-transform: uppercase;
 }
 
-.date-calendar-time-value {
-	font-size: 1.15rem;
+.dl-cal-time-value {
+	font-size: 1.1rem;
 	font-weight: 700;
 	color: var(--color-accent);
 	letter-spacing: 0.08em;
 	font-variant-numeric: tabular-nums;
 }
 
-/* ── Occasion text ── */
-
-.date-occasion {
-	margin: 0 0 1.25rem;
-	font-size: clamp(0.95rem, 2.5vw, 1.05rem);
-	color: var(--color-text);
-	font-weight: 500;
-	letter-spacing: 0.03em;
-}
-
-/* ── Location block ── */
-
-.location-block {
+/* ══════════════════════════════════════
+   Локация
+   ══════════════════════════════════════ */
+.dl-location {
 	position: relative;
-	max-width: 720px;
-	margin: 0 auto;
-	min-height: 280px;
-	border-radius: 16px;
+	width: min(420px, 92vw);
+	min-height: 260px;
+	border-radius: 18px;
 	overflow: hidden;
 	background: var(--color-dark);
-	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+	box-shadow:
+		0 16px 48px rgba(0, 0, 0, 0.12),
+		0 4px 12px rgba(0, 0, 0, 0.06);
 	background-image: url("/location-bg-image.png");
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
 }
 
-.location-overlay {
+.dl-loc-overlay {
 	position: absolute;
 	inset: 0;
-	background: linear-gradient(
-		180deg,
-		rgba(27, 43, 58, 0.55) 0%,
-		rgba(15, 29, 42, 0.8) 100%
-	);
 	z-index: 1;
+	background:
+		radial-gradient(ellipse 100% 60% at 50% 20%, transparent 20%, rgba(15, 29, 42, 0.4) 100%),
+		linear-gradient(
+			180deg,
+			rgba(15, 29, 42, 0.3) 0%,
+			rgba(15, 29, 42, 0.65) 50%,
+			rgba(15, 29, 42, 0.88) 100%
+		);
 }
 
-.location-content {
+.dl-loc-content {
 	position: relative;
 	z-index: 2;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
-	padding: 3rem 2rem 3.5rem;
+	padding: 3rem 1.75rem 2.5rem;
 	color: #fff;
 }
 
-.location-label {
-	font-size: 0.7rem;
-	font-weight: 600;
+.dl-loc-badge {
+	font-size: clamp(0.6rem, 1.6vw, 0.68rem);
+	font-weight: 500;
 	letter-spacing: 0.25em;
 	text-transform: uppercase;
 	color: rgba(255, 255, 255, 0.45);
 	margin-bottom: 0.75rem;
 }
 
-.location-title {
-	margin: 0 0 0.5rem;
-	font-size: clamp(1.5rem, 4vw, 2rem);
-	font-weight: 600;
+.dl-loc-name {
+	margin: 0 0 0.4rem;
+	font-family: "Cormorant Garamond", serif;
+	font-size: clamp(1.5rem, 5vw, 2rem);
+	font-weight: 500;
 	color: #fff;
-	text-align: center;
-	letter-spacing: 0.05em;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
 }
 
-.location-address {
+.dl-loc-address {
 	margin: 0 0 1.5rem;
-	font-size: clamp(0.85rem, 2vw, 0.95rem);
-	color: rgba(255, 255, 255, 0.6);
+	font-size: clamp(0.8rem, 2vw, 0.9rem);
+	color: rgba(255, 255, 255, 0.55);
 	line-height: 1.5;
 }
 
-.location-route-btn {
+.dl-loc-btn {
 	display: inline-flex;
 	align-items: center;
 	gap: 0.5rem;
-	padding: 0.7rem 1.75rem;
-	font-size: 0.75rem;
+	padding: 0.65rem 1.5rem;
+	font-size: clamp(0.68rem, 1.8vw, 0.75rem);
 	font-weight: 600;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
 	color: var(--color-dark);
 	background: rgba(255, 255, 255, 0.92);
 	border: none;
-	border-radius: 30px;
+	border-radius: 28px;
 	text-decoration: none;
-	transition: background 0.3s, transform 0.2s;
+	transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
-.location-route-btn:hover {
+.dl-loc-btn:hover {
 	background: #fff;
-	transform: translateY(-1px);
+	transform: translateY(-2px);
+	box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 
-.location-route-btn-icon {
-	font-size: 1rem;
-	line-height: 1;
+.dl-loc-btn svg {
+	flex-shrink: 0;
 }
 
-/* ── Gold theme ── */
-[data-theme="gold"] .location-overlay {
-	background: linear-gradient(
-		180deg,
-		rgba(42, 33, 24, 0.55) 0%,
-		rgba(30, 23, 15, 0.82) 100%
-	);
+/* ══════════════════════════════════════
+   Gold theme overrides
+   ══════════════════════════════════════ */
+[data-theme="gold"] .dl-loc-overlay {
+	background:
+		radial-gradient(ellipse 100% 60% at 50% 20%, transparent 20%, rgba(30, 23, 15, 0.4) 100%),
+		linear-gradient(
+			180deg,
+			rgba(30, 23, 15, 0.3) 0%,
+			rgba(30, 23, 15, 0.65) 50%,
+			rgba(30, 23, 15, 0.88) 100%
+		);
 }
 
-[data-theme="gold"] .location-route-btn {
+[data-theme="gold"] .dl-loc-btn {
 	color: #2a2118;
-	background: rgba(201, 168, 76, 0.85);
-	border: 1px solid rgba(255, 255, 255, 0.15);
-	backdrop-filter: blur(4px);
+	background: rgba(201, 168, 76, 0.88);
+	box-shadow: 0 4px 16px rgba(158, 122, 26, 0.15);
 }
 
-[data-theme="gold"] .location-route-btn:hover {
+[data-theme="gold"] .dl-loc-btn:hover {
 	background: rgba(201, 168, 76, 1);
+	box-shadow: 0 6px 24px rgba(158, 122, 26, 0.25);
 }

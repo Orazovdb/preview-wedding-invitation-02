@@ -1,108 +1,161 @@
-.countdown-section {
-  padding: 3.5rem 1.5rem;
-  text-align: center;
-  background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-card) 100%);
-  color: var(--color-text);
+/* ═══════════════════════════════════════════
+   Countdown — обратный отсчёт до свадьбы
+   ═══════════════════════════════════════════ */
+
+.cd-section {
+	padding: 3.5rem 1rem;
+	text-align: center;
+	background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-soft) 100%);
+	color: var(--color-text);
 }
 
-.countdown-title {
-  margin: 0 0 0.5rem;
-  font-size: clamp(1.35rem, 3.5vw, 1.75rem);
-  font-weight: 600;
-  color: var(--color-text);
-  letter-spacing: 0.02em;
+/* ══════════════════════════════════════
+   Header
+   ══════════════════════════════════════ */
+.cd-header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 2rem;
 }
 
-.countdown-date {
-  margin: 0 0 2rem;
-  font-size: 1rem;
-  color: var(--color-text-muted);
-  font-weight: 500;
+.cd-header-label {
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(1.3rem, 4vw, 1.75rem);
+	font-weight: 400;
+	color: var(--color-text);
+	letter-spacing: 0.03em;
+	line-height: 1.3;
 }
 
-.countdown-line {
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  flex-shrink: 0;
-  margin: 0 auto;
-  max-width: min(560px, 95vw);
+.cd-header-ornament {
+	display: flex;
+	align-items: center;
+	gap: 0.6rem;
+	margin-top: 0.65rem;
+	color: var(--color-accent-light);
+	opacity: 0.5;
 }
 
-.countdown-line-inner {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
+.cd-header-line {
+	width: 28px;
+	height: 1px;
+	background: currentColor;
 }
 
-.countdown-unit {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 4.5rem;
-  height: 4.5rem;
-  background: var(--color-bg-card);
-  border-radius: 50%;
-  border: 1.5px solid var(--color-border);
-  box-shadow:
-    0 3px 12px var(--color-shadow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+/* ══════════════════════════════════════
+   Timer tiles
+   ══════════════════════════════════════ */
+.cd-tiles {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 0;
+	margin: 0 auto;
+	max-width: min(480px, 95vw);
 }
 
-.countdown-unit:hover {
-  border-color: var(--color-accent-light);
-  box-shadow: 0 5px 18px var(--color-shadow);
+.cd-tile-wrap {
+	display: flex;
+	align-items: center;
 }
 
-.countdown-value {
-  font-variant-numeric: tabular-nums;
-  font-size: clamp(1.65rem, 4vw, 2.15rem);
-  font-weight: 700;
-  color: var(--color-accent);
-  line-height: 1.15;
-  letter-spacing: 0.02em;
+.cd-tile {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	min-width: 4.2rem;
+	padding: 1rem 0.5rem 0.85rem;
+	background: var(--color-bg-card);
+	border: 1px solid var(--color-border);
+	border-radius: 14px;
+	box-shadow:
+		0 4px 16px var(--color-shadow),
+		inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.countdown-label {
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-  text-transform: lowercase;
-  margin-top: 0.2rem;
-  letter-spacing: 0.03em;
+.cd-tile:hover {
+	box-shadow: 0 6px 24px var(--color-shadow);
+	transform: translateY(-2px);
 }
 
-.countdown-sep {
-  display: inline-flex;
-  align-items: center;
-  padding: 0 0.35rem;
-  font-size: clamp(1.4rem, 2.8vw, 1.65rem);
-  font-weight: 600;
-  color: var(--color-heart);
-  line-height: 1;
-  user-select: none;
+/* ── Значение (число) ── */
+.cd-tile-value {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0;
+	font-variant-numeric: tabular-nums;
 }
 
-@media (max-width: 420px) {
-  .countdown-line {
-    transform: scale(0.92);
-    transform-origin: center;
-  }
+.cd-digit-wrap {
+	display: inline-flex;
+	position: relative;
+	width: 1.2em;
+	height: 1.35em;
+	overflow: hidden;
+	align-items: center;
+	justify-content: center;
+}
 
-  .countdown-unit {
-    width: 4rem;
-    height: 4rem;
-  }
+.cd-digit {
+	position: absolute;
+	font-size: clamp(1.6rem, 5vw, 2.2rem);
+	font-weight: 700;
+	color: var(--color-accent);
+	line-height: 1;
+	letter-spacing: -0.01em;
+}
 
-  .countdown-value {
-    font-size: 1.5rem;
-  }
+/* ── Подпись ── */
+.cd-tile-label {
+	font-size: clamp(0.6rem, 1.6vw, 0.68rem);
+	font-weight: 500;
+	letter-spacing: 0.08em;
+	text-transform: lowercase;
+	color: var(--color-text-muted);
+}
 
-  .countdown-label {
-    font-size: 0.7rem;
-  }
+/* ── Разделитель (две точки вертикально) ── */
+.cd-sep {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	padding: 0 0.35rem;
+	margin-top: -0.75rem;
+}
+
+.cd-sep-dot {
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: var(--color-accent-light);
+	opacity: 0.35;
+}
+
+/* ══════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════ */
+@media (max-width: 400px) {
+	.cd-tile {
+		min-width: 3.6rem;
+		padding: 0.8rem 0.4rem 0.7rem;
+		border-radius: 12px;
+	}
+
+	.cd-digit {
+		font-size: 1.4rem;
+	}
+
+	.cd-digit-wrap {
+		width: 1em;
+		height: 1.2em;
+	}
+
+	.cd-sep {
+		padding: 0 0.2rem;
+	}
 }

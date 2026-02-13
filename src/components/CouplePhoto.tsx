@@ -166,90 +166,97 @@ export function CouplePhoto({ onOpen, onUnlockAudio }: CouplePhotoProps) {
 				transition={{ duration: phase === "expand" ? 2.4 : 1.2 }}
 			/>
 
-			{/* ── Settle-контент: каскадное появление поверх фото ── */}
+			{/* ── Settle: кинематографическая «title card» ── */}
 			{phase === "settle" && (
 				<div className="cc-wrap">
-					{/* Декоративные угловые метки */}
+					{/* Frosted glass card */}
 					<motion.div
-						className="cc-corners"
-						aria-hidden
-						initial={{ opacity: 0, scale: 1.06 }}
-						animate={{ opacity: 1, scale: 1 }}
-						transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
+						className="cc-card"
+						initial={{ opacity: 0, y: 30, scale: 0.96 }}
+						animate={{ opacity: 1, y: 0, scale: 1 }}
+						transition={{ duration: 1, delay: 0.15, ease: [0.22, 0.61, 0.36, 1] }}
 					>
-						<span className="cc-corner cc-corner--tl" />
-						<span className="cc-corner cc-corner--tr" />
-						<span className="cc-corner cc-corner--bl" />
-						<span className="cc-corner cc-corner--br" />
+						{/* Label */}
+						<motion.span
+							className="cc-label"
+							initial={{ opacity: 0, letterSpacing: "0.6em" }}
+							animate={{ opacity: 1, letterSpacing: "0.3em" }}
+							transition={{ duration: 0.9, delay: 0.4 }}
+						>
+							Свадьба
+						</motion.span>
+
+						{/* Date large display */}
+						<motion.div
+							className="cc-date-display"
+							initial={{ opacity: 0, y: 10 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.7, delay: 0.55, ease: "easeOut" }}
+						>
+							<span className="cc-date-day">
+								{String(weddingData.weddingDate.getDate()).padStart(2, "0")}
+							</span>
+							<span className="cc-date-sep" aria-hidden />
+							<div className="cc-date-right">
+								<span className="cc-date-month">
+									{weddingData.weddingDate.toLocaleDateString("ru-RU", { month: "long" })}
+								</span>
+								<span className="cc-date-year">
+									{weddingData.weddingDate.getFullYear()}
+								</span>
+							</div>
+						</motion.div>
+
+						{/* Ornamental rule */}
+						<motion.div
+							className="cc-rule"
+							initial={{ scaleX: 0, opacity: 0 }}
+							animate={{ scaleX: 1, opacity: 1 }}
+							transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 0.61, 0.36, 1] }}
+						>
+							<span className="cc-rule-line" />
+							<span className="cc-rule-diamond" aria-hidden>✦</span>
+							<span className="cc-rule-line" />
+						</motion.div>
+
+						{/* Couple names */}
+						<motion.h2
+							className="cc-names"
+							initial={{ opacity: 0, y: 14, filter: "blur(6px)" }}
+							animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+							transition={{ duration: 0.8, delay: 0.85, ease: [0.22, 0.61, 0.36, 1] }}
+						>
+							{weddingData.groomName}
+							<span className="cc-names-amp">&</span>
+							{weddingData.brideName}
+						</motion.h2>
+
+						{/* Venue */}
+						<motion.span
+							className="cc-venue"
+							initial={{ opacity: 0 }}
+							animate={{ opacity: 1 }}
+							transition={{ duration: 0.5, delay: 1.1 }}
+						>
+							{weddingData.venue} · {weddingData.venueAddress}
+						</motion.span>
 					</motion.div>
 
-					{/* Имя жениха */}
-					<motion.p
-						className="cc-name"
-						initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-						transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 0.61, 0.36, 1] }}
-					>
-						{weddingData.groomName}
-					</motion.p>
-
-					{/* Разделитель: линия — & — линия */}
-					<motion.div
-						className="cc-divider"
-						initial={{ opacity: 0, scaleX: 0 }}
-						animate={{ opacity: 1, scaleX: 1 }}
-						transition={{ duration: 0.9, delay: 0.55, ease: [0.22, 0.61, 0.36, 1] }}
-					>
-						<span className="cc-divider-line" />
-						<span className="cc-divider-amp">&</span>
-						<span className="cc-divider-line" />
-					</motion.div>
-
-					{/* Имя невесты */}
-					<motion.p
-						className="cc-name"
-						initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
-						animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-						transition={{ duration: 0.8, delay: 0.65, ease: [0.22, 0.61, 0.36, 1] }}
-					>
-						{weddingData.brideName}
-					</motion.p>
-
-					{/* Дата и место */}
-					<motion.div
-						className="cc-meta"
-						initial={{ opacity: 0, y: 12 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.7, delay: 0.95, ease: "easeOut" }}
-					>
-						<time className="cc-date" dateTime={weddingData.weddingDate.toISOString()}>
-							{weddingData.weddingDate.toLocaleDateString("ru-RU", {
-								day: "numeric",
-								month: "long",
-								year: "numeric"
-							})}
-						</time>
-						<span className="cc-venue">{weddingData.venue}</span>
-					</motion.div>
-
-					{/* Scroll-индикатор */}
+					{/* Scroll indicator — mouse icon */}
 					<motion.div
 						className="cc-scroll"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
-						transition={{ duration: 0.6, delay: 1.4 }}
+						transition={{ duration: 0.6, delay: 1.5 }}
 					>
-						<span className="cc-scroll-label">Листайте вниз</span>
-						<motion.span
-							className="cc-scroll-arrow"
-							animate={{ y: [0, 6, 0] }}
-							transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-							aria-hidden
-						>
-							<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-								<path d="M12 5v14M5 12l7 7 7-7" />
-							</svg>
-						</motion.span>
+						<span className="cc-mouse" aria-hidden>
+							<motion.span
+								className="cc-mouse-dot"
+								animate={{ y: [0, 8, 0], opacity: [1, 0.3, 1] }}
+								transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+							/>
+						</span>
+						<span className="cc-scroll-label">Листайте</span>
 					</motion.div>
 				</div>
 			)}

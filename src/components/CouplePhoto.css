@@ -220,158 +220,236 @@
 }
 
 /* ══════════════════════════════════════════
-   Settle state — cinematic title card
+   Settle state — frosted glass title card
    ══════════════════════════════════════════ */
 .cc-wrap {
 	position: absolute;
 	inset: 0;
-	z-index: 50;
+	z-index: 100;
 	pointer-events: none;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-end;
-	padding: 0 2rem 5rem;
+	padding: 0 1.5rem 3.5rem;
 	text-align: center;
 }
 
-/* ── Декоративные угловые метки ── */
-.cc-corners {
-	position: absolute;
-	inset: 2.5rem 1.5rem;
-	pointer-events: none;
-}
-
-.cc-corner {
-	position: absolute;
-	width: 28px;
-	height: 28px;
-	border-color: rgba(255, 255, 255, 0.25);
-	border-style: solid;
-	border-width: 0;
-}
-
-.cc-corner--tl { top: 0;    left: 0;   border-top-width: 1px;    border-left-width: 1px; }
-.cc-corner--tr { top: 0;    right: 0;  border-top-width: 1px;    border-right-width: 1px; }
-.cc-corner--bl { bottom: 0; left: 0;   border-bottom-width: 1px; border-left-width: 1px; }
-.cc-corner--br { bottom: 0; right: 0;  border-bottom-width: 1px; border-right-width: 1px; }
-
-/* ── Names ── */
-.cc-name {
-	margin: 0;
-	font-family: "Cormorant Garamond", "Montserrat", serif;
-	font-size: clamp(2.2rem, 9vw, 3.4rem);
-	font-weight: 300;
-	color: #fff;
-	letter-spacing: 0.07em;
-	line-height: 1.1;
-	text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-}
-
-/* ── Divider: line — & — line ── */
-.cc-divider {
-	display: flex;
-	align-items: center;
-	gap: 0.75rem;
-	margin: 0.35rem 0;
-	width: min(260px, 60vw);
-}
-
-.cc-divider-line {
-	flex: 1;
-	height: 1px;
-	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
-}
-
-.cc-divider-amp {
-	font-family: "Cormorant Garamond", "Montserrat", serif;
-	font-size: clamp(1.15rem, 4vw, 1.5rem);
-	font-weight: 300;
-	font-style: italic;
-	color: rgba(255, 255, 255, 0.55);
-	line-height: 1;
-}
-
-/* ── Date + venue ── */
-.cc-meta {
+/* ── Frosted glass card ── */
+.cc-card {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.3rem;
-	margin-top: 0.85rem;
+	gap: 0;
+	padding: 2rem 2.5rem 1.75rem;
+	border-radius: 16px;
+	background: rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(16px) saturate(1.2);
+	-webkit-backdrop-filter: blur(16px) saturate(1.2);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+	max-width: min(380px, 90vw);
+	width: 100%;
 }
 
-.cc-date {
+/* ── "Свадьба" label ── */
+.cc-label {
 	display: block;
-	font-size: clamp(0.68rem, 2.4vw, 0.82rem);
-	font-weight: 400;
-	letter-spacing: 0.25em;
+	font-size: clamp(0.55rem, 1.8vw, 0.65rem);
+	font-weight: 500;
+	letter-spacing: 0.3em;
 	text-transform: uppercase;
-	color: rgba(255, 255, 255, 0.6);
-	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+	color: rgba(255, 255, 255, 0.5);
+	margin-bottom: 1rem;
 }
 
-.cc-venue {
-	font-size: clamp(0.6rem, 2vw, 0.72rem);
+/* ── Date display: 15 | August / 2026 ── */
+.cc-date-display {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.85rem;
+	margin-bottom: 0.9rem;
+}
+
+.cc-date-day {
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(3rem, 10vw, 4rem);
+	font-weight: 300;
+	color: #fff;
+	line-height: 1;
+	letter-spacing: -0.02em;
+}
+
+.cc-date-sep {
+	width: 1px;
+	height: 2.8rem;
+	background: rgba(255, 255, 255, 0.2);
+	flex-shrink: 0;
+}
+
+.cc-date-right {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 0.1rem;
+}
+
+.cc-date-month {
+	font-size: clamp(0.8rem, 2.5vw, 0.95rem);
 	font-weight: 400;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.75);
+	text-transform: capitalize;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+}
+
+.cc-date-year {
+	font-size: clamp(0.7rem, 2vw, 0.8rem);
+	font-weight: 400;
 	color: rgba(255, 255, 255, 0.4);
+	letter-spacing: 0.15em;
+	line-height: 1.2;
 }
 
-/* ── Scroll indicator ── */
+/* ── Ornamental rule ── */
+.cc-rule {
+	display: flex;
+	align-items: center;
+	gap: 0.65rem;
+	width: 100%;
+	margin-bottom: 0.9rem;
+}
+
+.cc-rule-line {
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+}
+
+.cc-rule-diamond {
+	font-size: 0.45rem;
+	color: rgba(255, 255, 255, 0.35);
+	line-height: 1;
+}
+
+/* ── Couple names ── */
+.cc-names {
+	margin: 0 0 0.6rem;
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(1.6rem, 6.5vw, 2.2rem);
+	font-weight: 300;
+	color: #fff;
+	letter-spacing: 0.04em;
+	line-height: 1.15;
+	text-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
+}
+
+.cc-names-amp {
+	display: inline-block;
+	margin: 0 0.25em;
+	font-style: italic;
+	font-weight: 300;
+	color: rgba(255, 255, 255, 0.45);
+	font-size: 0.75em;
+}
+
+/* ── Venue ── */
+.cc-venue {
+	font-size: clamp(0.55rem, 1.8vw, 0.65rem);
+	font-weight: 400;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Scroll indicator: mouse icon ── */
 .cc-scroll {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.4rem;
-	margin-top: 2rem;
-	color: rgba(255, 255, 255, 0.5);
+	gap: 0.45rem;
+	margin-top: 1.5rem;
+}
+
+.cc-mouse {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	width: 20px;
+	height: 32px;
+	border-radius: 10px;
+	border: 1.5px solid rgba(255, 255, 255, 0.3);
+	padding-top: 6px;
+	box-sizing: border-box;
+}
+
+.cc-mouse-dot {
+	display: block;
+	width: 3px;
+	height: 5px;
+	border-radius: 2px;
+	background: rgba(255, 255, 255, 0.5);
 }
 
 .cc-scroll-label {
-	font-size: clamp(0.55rem, 1.6vw, 0.65rem);
+	font-size: clamp(0.5rem, 1.5vw, 0.6rem);
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
 	font-weight: 400;
-}
-
-.cc-scroll-arrow {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: rgba(255, 255, 255, 0.45);
+	color: rgba(255, 255, 255, 0.35);
 }
 
 /* ═══════════════════════════════════════
-   Gold theme — settle state overrides
+   Gold theme — settle card overrides
    ═══════════════════════════════════════ */
-[data-theme="gold"] .cc-corner {
-	border-color: rgba(201, 168, 76, 0.25);
+[data-theme="gold"] .cc-card {
+	background: rgba(201, 168, 76, 0.04);
+	border-color: rgba(201, 168, 76, 0.12);
 }
 
-[data-theme="gold"] .cc-divider-line {
-	background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.35), transparent);
+[data-theme="gold"] .cc-label {
+	color: rgba(201, 168, 76, 0.5);
 }
 
-[data-theme="gold"] .cc-divider-amp {
-	color: rgba(201, 168, 76, 0.6);
+[data-theme="gold"] .cc-date-sep {
+	background: rgba(201, 168, 76, 0.2);
 }
 
-[data-theme="gold"] .cc-date {
-	color: rgba(201, 168, 76, 0.55);
+[data-theme="gold"] .cc-date-month {
+	color: rgba(255, 235, 190, 0.7);
 }
 
-[data-theme="gold"] .cc-venue {
-	color: rgba(201, 168, 76, 0.4);
-}
-
-[data-theme="gold"] .cc-scroll {
+[data-theme="gold"] .cc-date-year {
 	color: rgba(201, 168, 76, 0.45);
 }
 
-[data-theme="gold"] .cc-scroll-arrow {
+[data-theme="gold"] .cc-rule-line {
+	background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.25), transparent);
+}
+
+[data-theme="gold"] .cc-rule-diamond {
 	color: rgba(201, 168, 76, 0.4);
+}
+
+[data-theme="gold"] .cc-names-amp {
+	color: rgba(201, 168, 76, 0.5);
+}
+
+[data-theme="gold"] .cc-venue {
+	color: rgba(201, 168, 76, 0.35);
+}
+
+[data-theme="gold"] .cc-mouse {
+	border-color: rgba(201, 168, 76, 0.3);
+}
+
+[data-theme="gold"] .cc-mouse-dot {
+	background: rgba(201, 168, 76, 0.5);
+}
+
+[data-theme="gold"] .cc-scroll-label {
+	color: rgba(201, 168, 76, 0.35);
 }
 
 /* ── Hint text ── */

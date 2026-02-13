@@ -1,6 +1,6 @@
 /** Путь к аудио в public/. */
 export const weddingData = {
-	musicUrl: "/perfect.mp3",
+	musicUrl: "/until-i-found-you.mp3",
 	/** Фото пары на первом экране (при клике открывается приглашение). Путь от корня сайта для совместимости с мессенджерами и PWA. */
 	couplePhotoUrl: "/rh.jpeg",
 	groomName: "Kerim",
