@@ -1,3 +1,8 @@
+/* ═══════════════════════════════════════════
+   CouplePhoto — кинематографическая анимация
+   ═══════════════════════════════════════════ */
+
+/* ── Main screen ── */
 .couple-photo-screen {
 	min-height: 100vh;
 	display: flex;
@@ -11,7 +16,47 @@
 	padding-top: 4.5rem;
 }
 
-/* Тонкий верхний орнамент */
+/* ── Floating ambient particles ── */
+.cp-particles {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	overflow: hidden;
+}
+
+.cp-dot {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.12);
+	animation: cp-float 14s ease-in-out infinite;
+}
+
+.cp-dot--0 { left: 8%;  top: 18%; animation-delay: 0s;   animation-duration: 15s; }
+.cp-dot--1 { left: 82%; top: 12%; animation-delay: -2s;  animation-duration: 11s; width: 2px; height: 2px; }
+.cp-dot--2 { left: 22%; top: 72%; animation-delay: -5s;  animation-duration: 17s; }
+.cp-dot--3 { left: 68%; top: 58%; animation-delay: -7s;  animation-duration: 13s; width: 2px; height: 2px; }
+.cp-dot--4 { left: 42%; top: 88%; animation-delay: -9s;  animation-duration: 16s; }
+.cp-dot--5 { left: 92%; top: 42%; animation-delay: -3s;  animation-duration: 12s; width: 2px; height: 2px; }
+.cp-dot--6 { left: 4%;  top: 52%; animation-delay: -11s; animation-duration: 18s; }
+
+@keyframes cp-float {
+	0%, 100% { transform: translateY(0) translateX(0);     opacity: 0.08; }
+	25%      { transform: translateY(-22px) translateX(8px); opacity: 0.25; }
+	50%      { transform: translateY(-6px) translateX(-10px); opacity: 0.15; }
+	75%      { transform: translateY(-28px) translateX(4px); opacity: 0.3; }
+}
+
+/* ── Text group (header + names) ── */
+.cp-text-group {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25rem;
+	z-index: 10;
+}
+
 .couple-photo-top-ornament {
 	color: rgba(255, 255, 255, 0.35);
 	margin-bottom: 0.25rem;
@@ -39,7 +84,7 @@
 }
 
 .couple-photo-names--large {
-	font-size: clamp(2rem, 4vw, 1.75rem);
+	font-size: clamp(2rem, 5vw, 2.25rem);
 	font-weight: 400;
 	letter-spacing: 0.05em;
 }
@@ -53,24 +98,15 @@
 	font-size: 0.7em;
 }
 
-.couple-photo-wrap {
+/* ── Small photo thumbnail ── */
+.cp-photo-thumb {
+	position: relative;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	max-width: min(380px, 88vw);
 	max-height: 55vh;
-	opacity: 1 !important;
-}
-
-.couple-photo-wrap--opening {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	z-index: 100;
-	pointer-events: none;
-	overflow: hidden;
-	max-width: 100vw;
-	max-height: 100vh;
+	z-index: 10;
 }
 
 .couple-photo-btn {
@@ -81,14 +117,30 @@
 	background: none;
 	cursor: pointer;
 	display: block;
-	border: 1px solid rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.18);
 	overflow: hidden;
 	border-radius: 8px;
 	box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+	animation: cp-glow 3.5s ease-in-out infinite;
+}
+
+/* Пульсирующее свечение рамки в idle */
+@keyframes cp-glow {
+	0%, 100% {
+		box-shadow:
+			0 12px 40px rgba(0, 0, 0, 0.4),
+			0 0 0 0 rgba(255, 255, 255, 0);
+	}
+	50% {
+		box-shadow:
+			0 18px 50px rgba(0, 0, 0, 0.3),
+			0 0 25px 3px rgba(255, 255, 255, 0.05);
+	}
 }
 
 .couple-photo-btn:disabled {
 	cursor: default;
+	animation: none;
 }
 
 .couple-photo-btn img {
@@ -104,102 +156,261 @@
 }
 
 .couple-photo-btn:disabled img {
-	filter: sepia(10%) brightness(1.1);
+	filter: sepia(5%) brightness(1.15) contrast(1.02);
 }
 
-.couple-photo-wrap--opening .couple-photo-btn img {
-	width: 100%;
-	height: 90%;
-	max-height: none;
-	object-fit: cover;
-	display: block;
-	vertical-align: middle;
+/* ── Click ring pulse ── */
+.cp-ring {
+	position: absolute;
+	inset: -4px;
+	border-radius: 12px;
+	border: 2px solid rgba(255, 255, 255, 0.65);
+	pointer-events: none;
+	z-index: 20;
 }
 
-.couple-photo-bloom {
+/* ════════════════════════════════════════
+   Iris wipe — полноэкранное раскрытие
+   через clip-path: circle()
+   ════════════════════════════════════════ */
+.cp-reveal {
 	position: absolute;
 	inset: 0;
-	z-index: 99;
+	z-index: 25;
+	clip-path: circle(0% at 50% 46%);
+	transition: clip-path 2.7s cubic-bezier(0.16, 1, 0.3, 1);
 	pointer-events: none;
-	background: radial-gradient(
-		ellipse at center,
-		rgba(250, 248, 245, 1) 0%,
-		rgba(250, 248, 245, 0.95) 40%,
-		rgba(200, 214, 224, 0.15) 100%
-	);
+	will-change: clip-path;
 }
 
+.cp-reveal--open {
+	clip-path: circle(150% at 50% 46%);
+}
+
+.cp-reveal-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	filter: brightness(1.05) contrast(1.02) saturate(1.05);
+	animation: cp-ken-burns 10s ease-out forwards;
+}
+
+/* Ken Burns — медленный зум внутри фото */
+@keyframes cp-ken-burns {
+	from { transform: scale(1); }
+	to   { transform: scale(1.12); }
+}
+
+/* ── Cinematic dark gradient overlay ── */
+.cp-cinema {
+	position: absolute;
+	inset: 0;
+	z-index: 35;
+	background:
+		radial-gradient(ellipse 120% 80% at 50% 30%, transparent 30%, rgba(10, 18, 26, 0.55) 100%),
+		linear-gradient(
+			180deg,
+			rgba(10, 18, 26, 0.1) 0%,
+			rgba(10, 18, 26, 0.35) 35%,
+			rgba(10, 18, 26, 0.7) 65%,
+			rgba(10, 18, 26, 0.88) 100%
+		);
+	pointer-events: none;
+}
+
+/* ══════════════════════════════════════════
+   Settle state — cinematic title card
+   ══════════════════════════════════════════ */
+.cc-wrap {
+	position: absolute;
+	inset: 0;
+	z-index: 50;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 0 2rem 5rem;
+	text-align: center;
+}
+
+/* ── Декоративные угловые метки ── */
+.cc-corners {
+	position: absolute;
+	inset: 2.5rem 1.5rem;
+	pointer-events: none;
+}
+
+.cc-corner {
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	border-color: rgba(255, 255, 255, 0.25);
+	border-style: solid;
+	border-width: 0;
+}
+
+.cc-corner--tl { top: 0;    left: 0;   border-top-width: 1px;    border-left-width: 1px; }
+.cc-corner--tr { top: 0;    right: 0;  border-top-width: 1px;    border-right-width: 1px; }
+.cc-corner--bl { bottom: 0; left: 0;   border-bottom-width: 1px; border-left-width: 1px; }
+.cc-corner--br { bottom: 0; right: 0;  border-bottom-width: 1px; border-right-width: 1px; }
+
+/* ── Names ── */
+.cc-name {
+	margin: 0;
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(2.2rem, 9vw, 3.4rem);
+	font-weight: 300;
+	color: #fff;
+	letter-spacing: 0.07em;
+	line-height: 1.1;
+	text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Divider: line — & — line ── */
+.cc-divider {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin: 0.35rem 0;
+	width: min(260px, 60vw);
+}
+
+.cc-divider-line {
+	flex: 1;
+	height: 1px;
+	background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+}
+
+.cc-divider-amp {
+	font-family: "Cormorant Garamond", "Montserrat", serif;
+	font-size: clamp(1.15rem, 4vw, 1.5rem);
+	font-weight: 300;
+	font-style: italic;
+	color: rgba(255, 255, 255, 0.55);
+	line-height: 1;
+}
+
+/* ── Date + venue ── */
+.cc-meta {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3rem;
+	margin-top: 0.85rem;
+}
+
+.cc-date {
+	display: block;
+	font-size: clamp(0.68rem, 2.4vw, 0.82rem);
+	font-weight: 400;
+	letter-spacing: 0.25em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.6);
+	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cc-venue {
+	font-size: clamp(0.6rem, 2vw, 0.72rem);
+	font-weight: 400;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Scroll indicator ── */
+.cc-scroll {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.4rem;
+	margin-top: 2rem;
+	color: rgba(255, 255, 255, 0.5);
+}
+
+.cc-scroll-label {
+	font-size: clamp(0.55rem, 1.6vw, 0.65rem);
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.cc-scroll-arrow {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: rgba(255, 255, 255, 0.45);
+}
+
+/* ═══════════════════════════════════════
+   Gold theme — settle state overrides
+   ═══════════════════════════════════════ */
+[data-theme="gold"] .cc-corner {
+	border-color: rgba(201, 168, 76, 0.25);
+}
+
+[data-theme="gold"] .cc-divider-line {
+	background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.35), transparent);
+}
+
+[data-theme="gold"] .cc-divider-amp {
+	color: rgba(201, 168, 76, 0.6);
+}
+
+[data-theme="gold"] .cc-date {
+	color: rgba(201, 168, 76, 0.55);
+}
+
+[data-theme="gold"] .cc-venue {
+	color: rgba(201, 168, 76, 0.4);
+}
+
+[data-theme="gold"] .cc-scroll {
+	color: rgba(201, 168, 76, 0.45);
+}
+
+[data-theme="gold"] .cc-scroll-arrow {
+	color: rgba(201, 168, 76, 0.4);
+}
+
+/* ── Hint text ── */
 .couple-photo-hint {
 	margin: 0;
 	font-size: clamp(0.7rem, 2.2vw, 0.85rem);
 	letter-spacing: 0.12em;
 	text-transform: none;
-	color: rgba(255, 255, 255, 0.55);
+	color: rgba(255, 255, 255, 0.5);
 	font-weight: 400;
 	pointer-events: none;
 	text-align: center;
 	max-width: 280px;
+	z-index: 10;
 }
 
-.couple-content {
-	position: absolute;
-	left: 50%;
-	bottom: 7rem;
-	transform: translateX(-50%) !important;
-	z-index: 101;
-	pointer-events: none;
-	text-align: center;
-	width: 100%;
-}
-
-.couple-content .couple-photo-header {
-	margin-bottom: 0.5rem;
-}
-
-.couple-content-scroll {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.5rem;
-	margin-top: 1.5rem;
-	color: rgba(255, 255, 255, 0.9);
-	opacity: 0.7;
-}
-
-.couple-content-scroll-line {
-	width: 1px;
-	height: 40px;
-	background: rgba(255, 255, 255, 0.25);
-	border-radius: 1px;
-	position: relative;
-	overflow: visible;
-}
-
-.couple-content-scroll-line-dot {
-	position: absolute;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 5px;
-	height: 8px;
-	background: rgba(255, 255, 255, 0.8);
-	border-radius: 3px;
-	top: 0;
-}
-
-.couple-content-scroll-text {
-	font-size: clamp(0.65rem, 2vw, 0.75rem);
-	letter-spacing: 0.15em;
-	text-transform: uppercase;
-	font-weight: 400;
-}
-
-/* ── Gold theme ── */
+/* ═══════════════════════════════════════
+   Gold theme overrides
+   ═══════════════════════════════════════ */
 [data-theme="gold"] .couple-photo-screen {
 	background: linear-gradient(180deg, #1e170f 0%, #2a2118 50%, #3a2f1e 100%);
 }
 
 [data-theme="gold"] .couple-photo-btn {
-	border-color: rgba(201, 168, 76, 0.35);
+	border-color: rgba(201, 168, 76, 0.3);
+	animation-name: cp-glow-gold;
+}
+
+@keyframes cp-glow-gold {
+	0%, 100% {
+		box-shadow:
+			0 12px 40px rgba(0, 0, 0, 0.4),
+			0 0 0 0 rgba(201, 168, 76, 0);
+	}
+	50% {
+		box-shadow:
+			0 18px 50px rgba(0, 0, 0, 0.3),
+			0 0 28px 3px rgba(201, 168, 76, 0.08);
+	}
 }
 
 [data-theme="gold"] .couple-photo-btn img {
@@ -210,19 +421,30 @@
 	filter: sepia(15%) brightness(1.15);
 }
 
-[data-theme="gold"] .couple-photo-bloom {
-	background: radial-gradient(
-		ellipse at center,
-		rgba(253, 248, 240, 1) 0%,
-		rgba(253, 248, 240, 0.95) 40%,
-		rgba(201, 168, 76, 0.15) 100%
-	);
-}
-
 [data-theme="gold"] .couple-photo-top-ornament {
 	color: rgba(201, 168, 76, 0.5);
 }
 
 [data-theme="gold"] .couple-photo-ampersand {
 	color: rgba(201, 168, 76, 0.7);
+}
+
+[data-theme="gold"] .cp-ring {
+	border-color: rgba(201, 168, 76, 0.7);
+}
+
+[data-theme="gold"] .cp-dot {
+	background: rgba(201, 168, 76, 0.12);
+}
+
+[data-theme="gold"] .cp-cinema {
+	background:
+		radial-gradient(ellipse 120% 80% at 50% 30%, transparent 30%, rgba(20, 14, 6, 0.55) 100%),
+		linear-gradient(
+			180deg,
+			rgba(20, 14, 6, 0.1) 0%,
+			rgba(20, 14, 6, 0.35) 35%,
+			rgba(20, 14, 6, 0.7) 65%,
+			rgba(20, 14, 6, 0.88) 100%
+		);
 }
